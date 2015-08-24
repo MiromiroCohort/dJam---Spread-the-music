@@ -1,3 +1,3 @@
 Rails.application.routes.draw do
-  get 'search/new'
+  resources :search
 end
