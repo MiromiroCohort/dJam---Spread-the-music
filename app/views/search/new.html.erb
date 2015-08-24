@@ -1,4 +1,14 @@
-<h1>Search#new</h1>
-<form>
-
-</form>
+<article>
+  <header>
+    <h1>Search</h1>
+  </header>
+  <%= form_for :Search do |s| %>
+    <p>
+      <%= s.label :Enter_song_title %><br>
+      <%= s.text_field :Search %>
+    </p>
+    <p>
+      <%= s.submit :Search! %>
+    </p>
+  <% end %>
+</article>
