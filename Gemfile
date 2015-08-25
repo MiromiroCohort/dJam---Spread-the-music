@@ -13,6 +13,8 @@ gem 'httparty'
 gem 'viddl-rb'
 gem 'youtube-downloader'
 
+gem 'net-ssh', '~> 2.9.2'
+
 group :development, :test do
   gem 'byebug'
   gem 'web-console', '~> 2.0'
