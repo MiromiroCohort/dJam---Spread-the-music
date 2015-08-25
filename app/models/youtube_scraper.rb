@@ -1,5 +1,5 @@
-# require 'httparty'
-require 'json'
+require 'open-uri'
+# require 'viddl-rb'
 
 class YoutubeScraper
   include HTTParty
@@ -10,7 +10,8 @@ class YoutubeScraper
   # base_uri "https://www.googleapis.com/youtube/v3"s
 
   def self.scrape_audio(video_id)
-    p video_id
+    link = "https://www.youtube.com/watch?v=#{video_id}"
+   p  stuff = ViddlRb.get_urls_names(link).first
   end
 
   def self.search(query)
