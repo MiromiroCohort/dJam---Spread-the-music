@@ -18,8 +18,8 @@ class YoutubeScraper
     modified_query = query.gsub(/\W/, "+")
     token = "AIzaSyBAKGAA_wIMXH_lANamrJ1CScHyRLjmX3Y"
     response = HTTParty.get("https://www.googleapis.com/youtube/v3/search?part=snippet&q=#{modified_query}&type=video&videoCategoryId=music&videoDefinition=high&key=#{token}")
-    video_id = response["items"][0]["id"]["videoId"]
-    YoutubeScraper.scrape_audio(video_id)
+   p video_id = response["items"][0]["id"]["videoId"]
+    # YoutubeScraper.scrape_audio(video_id)
   end
 
 
