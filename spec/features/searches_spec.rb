@@ -2,18 +2,18 @@ require 'rails_helper'
 
 RSpec.feature "Searches", type: :feature do
   scenario 'user can see the form on the page' do
-    visit new_search_path
+    visit root_path
 
-    expect(page).to have_selector('form')
+    expect(page).to have_selector('#query')
   end
 
   scenario 'user can complete and submit a search' do
-    visit new_search_path
+    visit search_new_path
 
-    fill_in 'Search', with: "Nicolas Jaar el bandido"
+    fill_in :query, :with => "Nicolas Jaar el bandido"
 
-    click_button 'Search'
+    click_button 'Search!'
 
-    expect(page).to have_content('found')
+    expect(page).to have_content('Scraping')
   end
 end

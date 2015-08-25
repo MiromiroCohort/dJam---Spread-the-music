@@ -2,13 +2,9 @@
   <header>
     <h1>Search</h1>
   </header>
-  <%= form_for :Search do |s| %>
-    <p>
-      <%= s.label :Enter_song_title %><br>
-      <%= s.text_field :Search %>
-    </p>
-    <p>
-      <%= s.submit :Search! %>
-    </p>
-  <% end %>
+  <form action="/search/scrape">
+    <label for="Enter_song_title">Enter song title</label>
+    <input id="query" type="text" name="query">
+    <input type="submit" value="Search!">
+  </form>
 </article>
