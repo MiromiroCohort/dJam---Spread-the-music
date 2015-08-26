@@ -28,9 +28,9 @@ $( document ).ready(function() {
   function addSong(){
     $( ".add-song-button" ).on('click', function( event ) {
       event.preventDefault();
-      var query = $(this).data("id");
+      var video_id = $(this).data("id");
     $.ajax({
-        url: "/search/add?query=" + query,
+        url: "/search/add?query=" + video_id,
         type: "POST",
         success: function(data) {
           console.log(data)
