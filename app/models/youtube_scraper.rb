@@ -1,5 +1,6 @@
 class YoutubeScraper
   include HTTParty
+  format :json
 
   base_uri "https://www.googleapis.com/youtube/v3"
 
@@ -9,8 +10,7 @@ class YoutubeScraper
     modified_query = query.gsub(/\W/, "+")
     token = "AIzaSyBAKGAA_wIMXH_lANamrJ1CScHyRLjmX3Y"
     response = self.get("/search?part=snippet&maxResults=5&q=#{modified_query}&type=video&videoCategoryId=music&videoDefinition=high&key=#{token}")
-    video_id = response["items"]
-    puts video_id
+
     # YoutubeScraper.scrape_audio(video_id)
   end
 
@@ -21,3 +21,31 @@ class YoutubeScraper
   end
 
 end
+
+
+class ResultParser
+
+  def initialize(json_string)
+    @json_string = json_string
+  end
+
+  def parse_results
+    song_array = []
+    song_hashes = {}
+    @json_string.each do |item|
+      song_hash = {}
+      song_hash["title"] =  item["snippet"]["title"]
+      song_hash["image"] =  item["snippet"]["thumbnails"]["default"]["url"]
+      song_hash["artist"] = "YouTube"
+      key = item["id"]["videoId"]
+      song_hashes[key] = song_hash
+    end
+    song_array << song_hashes
+  end
+
+end
+
+# videoId
+# default url
+# title
+#  artist
