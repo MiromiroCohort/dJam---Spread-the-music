@@ -17,6 +17,13 @@ class SearchController < ApplicationController
     render json: {songs: new_results}
   end
 
+  def add
+    query = params[:query]
+    song_detail = YoutubeScraper.add_song(query)
+    p song_detail
+    # render json: {song: query}
+  end
+
 
 end
 

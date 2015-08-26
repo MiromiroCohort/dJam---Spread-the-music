@@ -13,9 +13,10 @@ $( document ).ready(function() {
         type: "GET",
         success: function(data) {
           var songs = data.songs[0];
-          $(".search-list" ).remove();
+          $(".search-results" ).remove();
           $("article").append("<section class=search-results></section>");
           displaySongs(songs);
+          addSong();
         },
         error: function(data) {
            console.log('Displaying songs was not successful!');
@@ -24,13 +25,25 @@ $( document ).ready(function() {
       return false;
     });
 
+  function addSong(){
+    $( ".add-song-button" ).on('click', function( event ) {
+      event.preventDefault();
+      var query = $(this).data("id");
+    $.ajax({
+        url: "/search/add?query=" + query,
+        type: "POST",
+        success: function(data) {
+          console.log(data)
 
-  // $( ".add-song-button" ).on('submit', function( event ) {
-  //   event.preventDefault();
-  //   console.log("button press");
 
-  // });
-
+        },
+        error: function(data) {
+           console.log('Adding song was not successful!');
+        }
+      });
+      return false;
+    });
+  };
 
 
   function displaySongs(songs){
@@ -40,7 +53,7 @@ $( document ).ready(function() {
       items.push( "<li id=" + song + ">" +
       "<h1 class="+"song-title" + ">" + songs[song]["title"] + "</h1>" +
       "<img class="+"song-img" + " src=" + songs[song]["image"] + ">" +
-      "<button class="+"add-song-button"+' href=' + '/add' + ">Add</button>"+
+      "<button class="+"add-song-button"+' data-id='+ song + ' href=' + '/add' + ">Add</button>"+
       "</li>" );
     });
 

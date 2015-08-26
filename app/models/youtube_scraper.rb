@@ -10,7 +10,12 @@ class YoutubeScraper
     modified_query = query.gsub(/\W/, "+")
     token = "AIzaSyBAKGAA_wIMXH_lANamrJ1CScHyRLjmX3Y"
     response = self.get("/search?part=snippet&maxResults=5&q=#{modified_query}&type=video&videoCategoryId=music&videoDefinition=high&key=#{token}")
+  end
 
+  def self.add_song(video_id)
+    modified_query = video_id.gsub(/\W/, "+")
+    token = "AIzaSyBAKGAA_wIMXH_lANamrJ1CScHyRLjmX3Y"
+    response = self.get("/search?part=snippet&id=#{video_id}&key=AIzaSyBAKGAA_wIMXH_lANamrJ1CScHyRLjmX3Y")
     # YoutubeScraper.scrape_audio(video_id)
   end
 
