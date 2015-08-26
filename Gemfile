@@ -12,6 +12,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'httparty'
 gem 'viddl-rb'
 gem 'youtube-downloader'
+gem 'omniauth-facebook'
 
 gem 'net-ssh', '~> 2.9.2'
 
