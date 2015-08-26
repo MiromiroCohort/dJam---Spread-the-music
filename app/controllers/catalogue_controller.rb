@@ -11,7 +11,8 @@ class CatalogueController
              artist: this_track.tag.artist,
              title: this_track.tag.title, 
              length:this_track.length, 
-             filename: item
+             filename: item, 
+             vote_count: 0
     end
   end
 end
