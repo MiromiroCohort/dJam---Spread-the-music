@@ -14,6 +14,7 @@ gem 'viddl-rb'
 gem 'youtube-downloader'
 
 gem 'net-ssh', '~> 2.9.2'
+gem 'ruby-mp3info', '~> 0.8.7'
 
 group :development, :test do
   gem 'byebug'
