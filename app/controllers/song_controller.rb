@@ -19,6 +19,7 @@ class SongController < ApplicationController
     highest = -1
     artx = ""
     song = ""
+    song_id = ""
     length = 0
     Track.each do |item|
       if item[:vote_count] > highest
@@ -26,6 +27,7 @@ class SongController < ApplicationController
         artx = item[:artist]
         song = item[:filename]
         length = item[:length]
+        song_id = item[:_id]
       end
     end
     this_host = @host_address
