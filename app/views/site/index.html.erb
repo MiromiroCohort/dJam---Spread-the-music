@@ -1,3 +1,4 @@
+
 <section>
   <form method="post" action="/session">
     <legend>Host Login</legend>
@@ -5,10 +6,10 @@
     <input type="password" name="password" value="Password">
     <button type="submit">Login</button>
   </form>
-  <form method="post" action="/users">
+  <form method="post" action="/hosts">
     <legend>Host Register</legend>
-    <input type="text" name="email" value="Email">
-    <input type="password" name="password" value="Password">
+    <input type="text" name="host[email]" value="Email">
+    <input type="password" name="host[password]" value="Password">
     <button type="submit">Register</button>
   </form>
   <form>
