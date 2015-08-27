@@ -42,7 +42,9 @@ class CatalogueController < ApplicationController
 
 
   def vote
-    p "hello"
+    this_track = Track.find(params[:song_ref])
+    this_track.vote_count +=1
+    this_track.save
   end
 
 
@@ -51,7 +53,9 @@ class CatalogueController < ApplicationController
     if Track.first
       out_html = "<table><tr><th>Artist</th><th>Title</th></tr>"
       Track.each do |play_item|
-        out_html += "<tr><td>" + play_item.artist + "</td><td>" + play_item.title + "</td><td><button class='vote_btn' id='" + play_item.id + "'>vote</button></td></tr>"
+        out_html += "<tr><td>" + play_item.artist + "</td><td>" + play_item.title 
+        out_html += "</td><td><button class='vote_btn' id='" + play_item.id + "'>vote</button></td>"
+        out_html += "<td>" + play_item.vote_count.to_s + "</td></tr>"
       end
       out_html += "</table>"
     else
@@ -61,8 +65,5 @@ class CatalogueController < ApplicationController
   end
 
 
-  def record_song_vote(song_id)
-    Track.find(song_id).vote_count +=1
-  end
 
 end
