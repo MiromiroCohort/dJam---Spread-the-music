@@ -1,0 +1,84 @@
+@media screen and (min-width:280px) {
+
+/*  .songs li p {
+    font-size: .8rem;
+    max-height: 1.1rem;
+    max-width: 73%;
+  }*/
+
+}
+
+
+
+@media screen and (min-width:300px) {
+
+/*  .songs li p {
+    font-size: .9rem;
+    max-height: 1.2rem;
+    max-width: 75%;
+  }*/
+
+}
+
+
+
+@media screen and (min-width:331px) {
+
+/*  .songs li p {
+    font-size: 1em;
+    max-height: 1.4rem;
+    max-width: 77%;
+  }*/
+
+}
+
+
+
+@media screen and (min-width:400px) {
+
+  h1 {
+    font-size: 1.75rem;
+  }
+
+  h2 {
+    font-size: 1rem;
+    letter-spacing: 0.75rem;
+  }
+
+/*  .song, .delete, .vote {
+    font-size: .8em;
+  }
+
+  .delete-btn, .vote-btn {
+    max-width: 25px;
+  }*/
+
+}
+
+
+
+@media screen and (min-width:500px) {
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  h2 {
+    font-size: 1.25rem;
+  }
+
+}
+
+
+
+@media screen and (min-width:600px) {
+
+  h1 {
+    font-size: 2.5rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+}
