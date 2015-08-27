@@ -13,11 +13,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'httparty'
 gem 'viddl-rb'
 gem 'youtube-downloader'
-<<<<<<< HEAD
-gem 'omniauth-facebook'
-=======
 gem 'youtube-dl.rb'
->>>>>>> 83bc042d995f101840f74514a54e7baf791e6dc5
 
 gem 'net-ssh', '~> 2.9.2'
 gem 'ruby-mp3info', '~> 0.8.7'
