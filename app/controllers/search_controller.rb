@@ -26,10 +26,10 @@ class SearchController < ApplicationController
     song_duration = YoutubeScraper.scrape_duration(video_id)
     p "Song duration: #{song_duration}"
     t = song_duration.match(/PT([0-9]+H)?([0-9]+M)?([0-9]+S)?/)
-    p t[1].to_i
-    p t[2].to_i
+    p t[1].to_i * 60
+    p t[2].to_i * 60
     p t[3].to_i
-    # new_track = Track.create(artist: params[:artist], title: params[:title], length: song_duration)
+    # new_track = Track.create(artist: params[:artist], title: params[:title], length: length)
     render json: {song: new_track}
   end
 end
