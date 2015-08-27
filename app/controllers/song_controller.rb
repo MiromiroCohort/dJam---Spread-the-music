@@ -1,4 +1,5 @@
 require 'net/ssh'
+require 'mongo'
 
 class SongController < ApplicationController
 
@@ -20,7 +21,7 @@ class SongController < ApplicationController
     artx = ""
     song = ""
     song_id = ""
-    length = 0
+    length = 0 
     Track.each do |item|
       if item[:vote_count] > highest
         highest = item[:vote_count]
@@ -34,10 +35,13 @@ class SongController < ApplicationController
     session = Net::SSH.start( this_host, 'djam', :password => "C#ristmas25" )
       session.exec "mpc clear ; mpc search artist \"#{artx}\" | grep \'#{song}\' | mpc add ; mpc play"
     session.close
-
-    # TODO delete playlist entry
+    Track.find(song_id).remove
     return length
 
+  end
+
+  def delete_by_id (identifier)
+    p 
   end
 
 
