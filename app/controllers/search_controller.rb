@@ -1,3 +1,4 @@
+require 'pp'
 class SearchController < ApplicationController
 
   def index
@@ -13,15 +14,23 @@ class SearchController < ApplicationController
     five_songs_array = query_search["items"]
     results = ResultParser.new(five_songs_array)
     new_results = results.parse_results
+    # counter = 0
+    # for result in new_results[0] do
+    #   p result[1]["title"]
+    # end
     render json: {songs: new_results}
   end
 
   def add
-    video_id= params[:query]
-    song_detail = YoutubeScraper.scrape_duration(video_id)
-    render json: {song: song_detail}
+    video_id = params[:video_id]
+    song_duration = YoutubeScraper.scrape_duration(video_id)
+    p "Song duration: #{song_duration}"
+    t = song_duration.match(/PT([0-9]+H)?([0-9]+M)?([0-9]+S)?/)
+    p t[1].to_i
+    p t[2].to_i
+    p t[3].to_i
+    # new_track = Track.create(artist: params[:artist], title: params[:title], length: song_duration)
+    render json: {song: new_track}
   end
-
-
 end
 
