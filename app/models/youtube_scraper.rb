@@ -1,26 +1,56 @@
-require 'open-uri'
-# require 'viddl-rb'
-
 class YoutubeScraper
   include HTTParty
+  format :json
 
-  # # base_uri https://www.googleapis.com/youtube/v3/search?part=snippet&q=#{query}&type=video&videoCategoryId=music&key=AIzaSyBAKGAA_wIMXH_lANamrJ1CScHyRLjmX3Y
-  # AIzaSyBAKGAA_wIMXH_lANamrJ1CScHyRLjmX3Y
+  base_uri "https://www.googleapis.com/youtube/v3"
 
-  # base_uri "https://www.googleapis.com/youtube/v3"s
 
-  def self.scrape_audio(video_id)
-    link = "https://www.youtube.com/watch?v=#{video_id}"
-   p  stuff = ViddlRb.get_urls_names(link).first
-  end
 
   def self.search(query)
     modified_query = query.gsub(/\W/, "+")
     token = "AIzaSyBAKGAA_wIMXH_lANamrJ1CScHyRLjmX3Y"
-    response = HTTParty.get("https://www.googleapis.com/youtube/v3/search?part=snippet&q=#{modified_query}&type=video&videoCategoryId=music&videoDefinition=high&key=#{token}")
-    video_id = response["items"][0]["id"]["videoId"]
-    YoutubeScraper.scrape_audio(video_id)
+    response = self.get("/search?part=snippet&maxResults=5&q=#{modified_query}&type=video&videoCategoryId=music&videoDefinition=high&key=#{token}")
+  end
+
+  def self.scrape_duration(video_id)
+    token = "AIzaSyBAKGAA_wIMXH_lANamrJ1CScHyRLjmX3Y"
+    response = self.get("/videos?part=contentDetails&id=#{video_id}&key=#{token}")
+    duration = response["items"][0]["contentDetails"]["duration"]
+    # YoutubeScraper.scrape_audio(video_id)
   end
 
 
+  def self.scrape_audio(video_id)
+    link = "https://www.youtube.com/watch?v=#{video_id}"
+    system("youtube-dl --extract-audio --audio-format mp3  --audio-quality  0 #{link}")
+  end
+
 end
+
+
+class ResultParser
+
+  def initialize(json_string)
+    @json_string = json_string
+  end
+
+  def parse_results
+    song_array = []
+    song_hashes = {}
+    @json_string.each do |item|
+      song_hash = {}
+      song_hash["title"] =  item["snippet"]["title"]
+      song_hash["image"] =  item["snippet"]["thumbnails"]["default"]["url"]
+      song_hash["artist"] = "YouTube"
+      key = item["id"]["videoId"]
+      song_hashes[key] = song_hash
+    end
+    song_array << song_hashes
+  end
+
+end
+
+# videoId
+# default url
+# title
+#  artist
