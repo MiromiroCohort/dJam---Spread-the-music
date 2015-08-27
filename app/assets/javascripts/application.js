@@ -29,11 +29,15 @@ $( document ).ready(function() {
     $( ".add-song-button" ).on('click', function( event ) {
       event.preventDefault();
       var video_id = $(this).data("id");
+      var title = $("#"+video_id+" .song-title").html();
+      var artist = 'YouTube';
+      var song_data = {title: title, artist: artist, video_id: video_id}
+      console.log(song_data);
     $.ajax({
-        url: "/search/add?query=" + video_id,
+        url: "/search/add?query=",
+        data: song_data,
         type: "POST",
         success: function(data) {
-          console.log(data)
         },
         error: function(data) {
            console.log('Adding song was not successful!');
@@ -49,7 +53,7 @@ $( document ).ready(function() {
     var items = [];
     $.each(songs, function( song ) {
       items.push( "<li id=" + song + ">" +
-      "<h1 class="+"song-title" + ">" + songs[song]["title"] + "</h1>" +
+      "<h2 class="+"song-title" + ">" + songs[song]["title"] + "</h2>" +
       "<img class="+"song-img" + " src=" + songs[song]["image"] + ">" +
       "<button class="+"add-song-button"+' data-id='+ song + ' href=' + '/add' + ">Add</button>"+
       "</li>" );
@@ -65,7 +69,7 @@ $( document ).ready(function() {
     $("#"+hashName).closest("td").next().text(score)
     $.ajax({
       url: "/vote?song_ref=" + this.id,
-      type: "POST", 
+      type: "POST",
       success: function(data) {
         console.log(data)
       },

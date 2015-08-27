@@ -9,20 +9,20 @@ class YoutubeScraper
   def self.search(query)
     modified_query = query.gsub(/\W/, "+")
     token = "AIzaSyBAKGAA_wIMXH_lANamrJ1CScHyRLjmX3Y"
-    response = self.get("/search?part=snippet&maxResults=5&q=#{modified_query}&type=video&videoCategoryId=music&videoDefinition=high&key=#{token}")
+    response = self.get("/search?part=snippet&maxResults=5&q=#{modified_query}&type=video&videoDefinition=high&key=#{token}")
   end
 
   def self.scrape_duration(video_id)
     token = "AIzaSyBAKGAA_wIMXH_lANamrJ1CScHyRLjmX3Y"
     response = self.get("/videos?part=contentDetails&id=#{video_id}&key=#{token}")
-    duration = response["items"][0]["contentDetails"]["duration"]
+    duration_string = response["items"][0]["contentDetails"]["duration"]
     # YoutubeScraper.scrape_audio(video_id)
   end
 
 
   def self.scrape_audio(video_id)
     link = "https://www.youtube.com/watch?v=#{video_id}"
-    system("youtube-dl --extract-audio --audio-format mp3  --audio-quality  0 #{link}")
+    system("youtube-dl --extract-audio --audio-format mp3  --add-metadata --audio-quality 0 #{link}")
   end
 
 end
