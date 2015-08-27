@@ -34,8 +34,6 @@ $( document ).ready(function() {
         type: "POST",
         success: function(data) {
           console.log(data)
-
-
         },
         error: function(data) {
            console.log('Adding song was not successful!');
@@ -61,6 +59,19 @@ $( document ).ready(function() {
   };
 
 
+  $(".vote_btn").on('click', function() {
+    var thisurl = "/vote?song_ref=" + this.id
+    $.ajax({
+      url: "/vote?song_ref=" + this.id,
+      type: "POST", 
+      success: function(data) {
+        console.log(data)
+      },
+      error: function(data) {
+        console.log(thisurl + ' Your vote was not added');
+      }
+    });
+  });
 
 
 });
@@ -89,3 +100,6 @@ $( document ).ready(function() {
  //                    </div>
  //                  </div>
  //                </li>
+
+
+
