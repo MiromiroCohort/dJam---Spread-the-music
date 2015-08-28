@@ -1,0 +1,18 @@
+
+<section>
+  <form method="post" action="/session">
+    <legend>Host Login</legend>
+    <input type="text" name="email" value="Email">
+    <input type="password" name="password" value="Password">
+    <button type="submit">Login</button>
+  </form>
+  <form method="post" action="/hosts">
+    <legend>Host Register</legend>
+    <input type="text" name="host[email]" value="Email">
+    <input type="password" name="host[password]" value="Password">
+    <button type="submit">Register</button>
+  </form>
+  <form>
+    <a href="/playlists"><button type="button" name="find">Find A Playlist</button></a>
+  </form>
+</section>

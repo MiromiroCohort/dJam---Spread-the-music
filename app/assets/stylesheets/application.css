@@ -13,34 +13,6 @@
  *= require_tree .
  *= require_self
  */
-Skip to content
-This repository  
-Pull requests
-Issues
-Gist
- @delstevens
- Unwatch 6
-  Star 0
- Fork 0MiromiroCohort/dJam---Spread-the-music
-Branch: view  dJam---Spread-the-music/app/assets/stylesheets/application.css
-Iona Sammons 2 hours ago swap h1 and h2 naming in css
-1 contributor
-RawBlameHistory    126 lines (89 sloc)  2.285 kB
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
- * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any styles
- * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
- * file per style scope.
- *
- *= require_tree .
- *= require_self
- */
 
 #wrapper {
   background: #0A0A0A;
@@ -96,10 +68,7 @@ form {
   padding: 0 2%;
 }
 
-td {
-	color:#fff;
-	padding-left: 10px;
-}
+
 
 
 
@@ -140,5 +109,4 @@ Responsive
     font-size: 1.5rem;
   }
 }
-Status API Training Shop Blog About Pricing
-© 2015 GitHub, Inc. Terms Privacy Security Contact Help
+

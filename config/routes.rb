@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
-  get '/search/new' => 'search#new'
-  get '/search/scrape' => 'search#scrape'
-  post '/search/add' => 'search#add'
+  get '/track/new' => 'track#new'
+  get '/track/scrape' => 'track#scrape'
+  post '/session' => 'session#new'
+  # root 'site#index'
+  resources :users
+  resources :hosts
+  post '/track/add' => 'track#add'
+  root 'track#new'
   post '/vote' => 'catalogue#vote'
-
   get '/makelist' => 'catalogue#makelist'
-
-  root 'search#new'
 end
