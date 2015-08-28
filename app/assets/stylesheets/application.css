@@ -19,7 +19,6 @@
   margin: 0 auto;
   max-width: 600px;
   padding: 0 5% 5% 5%;
-  text-align: center;
 }
 
 a {
@@ -55,6 +54,7 @@ h1 {
 }
 
 h2 {
+  color: #DDD;
   font-size: .75rem;
   letter-spacing: 0.5rem;
   margin: 2% 0 0 5%;
@@ -68,6 +68,25 @@ form {
   padding: 0 2%;
 }
 
+
+/***************************************************
+Body
+***************************************************/
+.song-img, .add-song-button, .song-title {
+}
+
+li {
+  list-style: none;
+}
+
+.song-title {
+  font-size: 1.2em;
+}
+.song-img {
+}
+
+.song-title, .add-song-button {
+}
 
 
 
@@ -123,3 +142,4 @@ Responsive
     font-size: 1.5rem;
   }
 }
+
