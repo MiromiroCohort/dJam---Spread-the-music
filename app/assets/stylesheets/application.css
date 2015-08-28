@@ -45,7 +45,7 @@ header {
   text-align: center;
 }
 
-h1 {
+h1, .list-page-h2 {
   color: #EEE;
   font-size: 1.5rem;
   font-weight: bold;
@@ -54,7 +54,7 @@ h1 {
   text-shadow:  1px 1px 1px #000, 2px 3px 10px #AAA;
 }
 
-h2 {
+h2, .list-page-h1 {
   font-size: .75rem;
   letter-spacing: 0.5rem;
   margin: 2% 0 0 5%;
@@ -104,11 +104,11 @@ li {
 Responsive
 *****************************************************************************************************/
 @media screen and (min-width:400px) {
-  h1 {
+  h1, .list-page-h2 {
     font-size: 1.75rem;
   }
 
-  h2 {
+  h2, .list-page-h1 {
     font-size: 1rem;
     letter-spacing: 0.75rem;
   }
@@ -123,11 +123,11 @@ Responsive
 
 
 @media screen and (min-width:500px) {
-  h1 {
+  h1, .list-page-h2 {
     font-size: 2rem;
   }
 
-  h2 {
+  h2, .list-page-h1 {
     font-size: 1.25rem;
   }
 
@@ -139,11 +139,11 @@ Responsive
 
 
 @media screen and (min-width:600px) {
-  h1 {
+  h1, .list-page-h2 {
     font-size: 2.5rem;
   }
 
-  h2 {
+  h2, .list-page-h1 {
     font-size: 1.5rem;
   }
 
