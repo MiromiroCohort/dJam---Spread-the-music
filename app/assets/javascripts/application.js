@@ -9,7 +9,7 @@ $( document ).ready(function() {
     var query = $("#query").val();
 
     $.ajax({
-        url: "/search/scrape?query=" + query,
+        url: "/track/scrape?query=" + query,
         type: "GET",
         success: function(data) {
           var songs = data.songs[0];
@@ -34,7 +34,7 @@ $( document ).ready(function() {
       var song_data = {title: title, artist: artist, video_id: video_id}
       console.log(song_data);
     $.ajax({
-        url: "/search/add?query=",
+        url: "/track/add?query=",
         data: song_data,
         type: "POST",
         success: function(data) {

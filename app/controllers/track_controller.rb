@@ -1,6 +1,6 @@
 require 'mp3info'
 
-class SearchController < ApplicationController
+class TrackController < ApplicationController
 
   def index
   end

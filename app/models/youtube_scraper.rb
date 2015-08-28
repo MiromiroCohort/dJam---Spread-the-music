@@ -21,6 +21,7 @@ class YoutubeScraper
     link = "https://www.youtube.com/watch?v=#{video_id}"
     system("youtube-dl --extract-audio --audio-format mp3 --audio-quality 0 #{link}")
   end
+
 end
 
 class ResultParser
