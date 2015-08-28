@@ -29,14 +29,18 @@ class SongController < ApplicationController
       if item[:vote_count] > highest
         highest = item[:vote_count]
         artx = item[:artist]
-        song = item[:filename]
+        song = item[:title]
         length = item[:length]
         song_id = item[:_id]
       end
     end
+
+    grep_string = "grep -E " + song.split(/\W+/).join("| grep -E ")
+    p grep_string
+
     this_host = @host_address
     session = Net::SSH.start( this_host, 'djam', :password => "C#ristmas25" )
-      session.exec "mpc clear ; mpc search artist \"#{artx}\" | grep \'#{song}\' | mpc add ; mpc play"
+      session.exec "mpc clear ; mpc search artist \"#{artx}\" | #{grep_string} | mpc add ; mpc play"
     session.close
     Track.find(song_id).remove
     return length

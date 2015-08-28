@@ -36,7 +36,7 @@ class CatalogueController < ApplicationController
   end
 
   def search_playlist(search_string)
-
+    # TODO add the ability to echo | grep the mpc playlist
 
   end
 
