@@ -1,3 +1,5 @@
+require 'mp3info'
+
 class SearchController < ApplicationController
 
   def index
@@ -17,11 +19,27 @@ class SearchController < ApplicationController
   end
 
   def add
-    video_id= params[:query]
-    song_detail = YoutubeScraper.scrape_duration(video_id)
-    render json: {song: song_detail}
+    video_id = params[:video_id]
+    title = params[:title]
+    artist = params[:artist]
+    song_duration = YoutubeScraper.scrape_duration(video_id)
+    t = song_duration.match(/PT([0-9]+H)?([0-9]+M)?([0-9]+S)?/)
+    length = 0
+    length += (t[1].to_i * 60) * 60
+    length += t[2].to_i * 60
+    length += t[3].to_i
+    p "Song length: #{length}"
+    song_download = YoutubeScraper.scrape_audio(video_id)
+    mp3_tagger(artist, title, video_id, length)
+    render json: {song: new_track}
   end
 
-
+  def mp3_tagger(artist, title, video_id, length)
+    Mp3Info.open("#{Rails.root}/#{title}-#{video_id}.mp3") do |mp3|
+      mp3.tag.artist = artist
+      mp3.tag.title = title
+      mp3.tag.length = length
+    end
+  end
 end
 
