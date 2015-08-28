@@ -51,9 +51,14 @@ class CatalogueController < ApplicationController
 
   def generate_html_list
     if Track.first
-      out_html = "<table><tr><th>Artist</th><th>Title</th></tr>"
+      out_html = "<table width='500'><tr><th>Title</th></tr>"
       Track.each do |play_item|
-        out_html += "<tr><td>" + play_item.artist + "</td><td>" + play_item.title 
+        out_html += "<tr><td>" + play_item.artist + " : " 
+        out_string = ""
+        play_item.title.gsub(/\w+/) do |word|
+          out_string << word.capitalize + " "
+        end
+        out_html += out_string
         out_html += "</td><td><button class='vote_btn' id='" + play_item.id + "'>vote</button></td>"
         out_html += "<td>" + play_item.vote_count.to_s + "</td></tr>"
       end

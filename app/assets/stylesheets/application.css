@@ -13,3 +13,132 @@
  *= require_tree .
  *= require_self
  */
+Skip to content
+This repository  
+Pull requests
+Issues
+Gist
+ @delstevens
+ Unwatch 6
+  Star 0
+ Fork 0MiromiroCohort/dJam---Spread-the-music
+Branch: view  dJam---Spread-the-music/app/assets/stylesheets/application.css
+Iona Sammons 2 hours ago swap h1 and h2 naming in css
+1 contributor
+RawBlameHistory    126 lines (89 sloc)  2.285 kB
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+#wrapper {
+  background: #0A0A0A;
+  margin: 0 auto;
+  max-width: 600px;
+  padding: 0 5% 5% 5%;
+  text-align: center;
+}
+
+a {
+  text-decoration: none;
+}
+
+body {
+  background: #222;
+  font-family: 'Open Sans', sans-serif;
+}
+
+
+/***************************************************
+Heading
+***************************************************/
+header {
+  background: linear-gradient(#0A0A0A, transparent 10%),
+              linear-gradient(0deg, #0A0A0A, transparent),
+              url('discoballbackground.png') no-repeat center;
+  background-size: 100%;
+  color: #DDD;
+  font-family: 'PT Sans Narrow', sans-serif;
+  padding: 2%;
+  text-align: left;
+}
+
+h1 {
+  color: #EEE;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 2% 0 2% 5%;
+  text-shadow:  1px 1px 1px #000, 2px 3px 10px #AAA;
+}
+
+h2 {
+  font-size: .75rem;
+  letter-spacing: 0.5rem;
+  margin: 2% 0 0 5%;
+  text-shadow:  1px 1px 1px #000, 2px 3px 20px #AAA;
+}
+
+form {
+  text-align: center;
+  color: #FFF;
+    font-size: .7rem;
+  padding: 0 2%;
+}
+
+td {
+	color:#fff;
+	padding-left: 10px;
+}
+
+
+
+/*****************************************************************************************************
+Responsive
+*****************************************************************************************************/
+@media screen and (min-width:400px) {
+  h1 {
+    font-size: 1.75rem;
+  }
+
+  h2 {
+    font-size: 1rem;
+    letter-spacing: 0.75rem;
+  }
+}
+
+
+
+@media screen and (min-width:500px) {
+  h1 {
+    font-size: 2rem;
+  }
+
+  h2 {
+    font-size: 1.25rem;
+  }
+}
+
+
+
+@media screen and (min-width:600px) {
+  h1 {
+    font-size: 2.5rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+}
+Status API Training Shop Blog About Pricing
+© 2015 GitHub, Inc. Terms Privacy Security Contact Help
