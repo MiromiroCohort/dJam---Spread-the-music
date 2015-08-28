@@ -15,10 +15,6 @@ class SearchController < ApplicationController
     five_songs_array = query_search["items"]
     results = ResultParser.new(five_songs_array)
     new_results = results.parse_results
-    # counter = 0
-    # for result in new_results[0] do
-    #   p result[1]["title"]
-    # end
     render json: {songs: new_results}
   end
 
