@@ -30,6 +30,12 @@ body {
   font-family: 'Open Sans', sans-serif;
 }
 
+td {
+  color:#fff;
+  padding-left: 10px;
+  text-align: left;
+}
+
 
 /***************************************************
 Heading
@@ -87,20 +93,6 @@ li {
 
 .song-title, .add-song-button {
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
