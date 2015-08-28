@@ -7,4 +7,6 @@ Rails.application.routes.draw do
   resources :hosts
   post '/track/add' => 'track#add'
   root 'track#new'
+  post '/vote' => 'catalogue#vote'
+  get '/makelist' => 'catalogue#makelist'
 end

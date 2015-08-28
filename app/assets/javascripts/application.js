@@ -63,6 +63,21 @@ $( document ).ready(function() {
   };
 
 
+  $(".vote_btn").on('click', function() {
+    var hashName = this.id
+    var score = (parseInt($("#"+hashName).closest("td").next().text())+1)
+    $("#"+hashName).closest("td").next().text(score)
+    $.ajax({
+      url: "/vote?song_ref=" + this.id,
+      type: "POST",
+      success: function(data) {
+        console.log(data)
+      },
+      error: function(data) {
+        alert('Sorry - your vote was not added');
+      }
+    });
+  });
 
 
 });
@@ -91,3 +106,6 @@ $( document ).ready(function() {
  //                    </div>
  //                  </div>
  //                </li>
+
+
+
