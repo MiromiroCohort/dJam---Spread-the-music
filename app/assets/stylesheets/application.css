@@ -54,6 +54,7 @@ h1 {
 }
 
 h2 {
+  color: #DDD;
   font-size: .75rem;
   letter-spacing: 0.5rem;
   margin: 2% 0 0 5%;
@@ -75,6 +76,7 @@ Body
 }
 
 li {
+  list-style: none;
 }
 
 .song-title {
@@ -140,3 +142,4 @@ Responsive
     font-size: 1.5rem;
   }
 }
+
