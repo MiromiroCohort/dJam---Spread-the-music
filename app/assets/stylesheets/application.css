@@ -27,6 +27,7 @@ a {
 
 body {
   background: #222;
+  color: #DDD;
   font-family: 'Open Sans', sans-serif;
 }
 
@@ -39,32 +40,32 @@ header {
               linear-gradient(0deg, #0A0A0A, transparent),
               url('discoballbackground.png') no-repeat center;
   background-size: 100%;
-  color: #DDD;
   font-family: 'PT Sans Narrow', sans-serif;
   padding: 2%;
-  text-align: left;
+  text-align: center;
 }
 
-h1 {
+h1, .list-page-h2 {
   color: #EEE;
   font-size: 1.5rem;
   font-weight: bold;
   margin: 2% 0 2% 5%;
+  text-align: left;
   text-shadow:  1px 1px 1px #000, 2px 3px 10px #AAA;
 }
 
-h2 {
-  color: #DDD;
+h2, .list-page-h1 {
   font-size: .75rem;
   letter-spacing: 0.5rem;
   margin: 2% 0 0 5%;
+  text-align: left;
   text-shadow:  1px 1px 1px #000, 2px 3px 20px #AAA;
 }
 
 form {
   text-align: center;
   color: #FFF;
-    font-size: .7rem;
+  font-size: .7rem;
   padding: 0 2%;
 }
 
@@ -77,22 +78,16 @@ Body
 
 li {
   list-style: none;
+  margin: 5% 0;
 }
 
-.song-title {
-  font-size: 1.2em;
-}
 .song-img {
+  margin: 0 0 0 5%;
 }
 
-.song-title, .add-song-button {
+.add-song-button {
+  margin: 0 50px
 }
-
-
-
-
-
-
 
 
 
@@ -109,37 +104,60 @@ li {
 Responsive
 *****************************************************************************************************/
 @media screen and (min-width:400px) {
-  h1 {
+  h1, .list-page-h2 {
     font-size: 1.75rem;
   }
 
-  h2 {
+  h2, .list-page-h1 {
     font-size: 1rem;
     letter-spacing: 0.75rem;
+  }
+
+  .add-song-button {
+    height: 20px;
+    width: 40px;
+    font-size: .8rem;
   }
 }
 
 
 
 @media screen and (min-width:500px) {
-  h1 {
+  h1, .list-page-h2 {
     font-size: 2rem;
   }
 
-  h2 {
+  h2, .list-page-h1 {
     font-size: 1.25rem;
+  }
+
+  form {
+    font-size: 0.9rem;
   }
 }
 
 
 
 @media screen and (min-width:600px) {
-  h1 {
+  h1, .list-page-h2 {
     font-size: 2.5rem;
   }
 
-  h2 {
+  h2, .list-page-h1 {
     font-size: 1.5rem;
+  }
+
+  form {
+    font-size: 1.1rem;
+  }
+
+  .add-song-button {
+    background-color: #FFF;
+    border: none;
+    border-radius: 5px;
+    height: 22px;
+    width: 43px;
+    font-size: .9rem;
   }
 }
 
