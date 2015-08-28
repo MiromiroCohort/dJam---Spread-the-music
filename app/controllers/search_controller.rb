@@ -31,7 +31,6 @@ class SearchController < ApplicationController
     p "Song length: #{length}"
     song_download = YoutubeScraper.scrape_audio(video_id)
     mp3_tagger(artist, title, video_id, length)
-    render json: {song: new_track}
   end
 
   def mp3_tagger(artist, title, video_id, length)

@@ -14,20 +14,12 @@ class YoutubeScraper
     token = "AIzaSyBAKGAA_wIMXH_lANamrJ1CScHyRLjmX3Y"
     response = self.get("/videos?part=contentDetails&id=#{video_id}&key=#{token}")
     duration_string = response["items"][0]["contentDetails"]["duration"]
-<<<<<<< HEAD
-=======
-    # YoutubeScraper.scrape_audio(video_id)
->>>>>>> Development
   end
 
 
   def self.scrape_audio(video_id)
     link = "https://www.youtube.com/watch?v=#{video_id}"
-<<<<<<< HEAD
     system("youtube-dl --extract-audio --audio-format mp3 --audio-quality 0 #{link}")
-=======
-    system("youtube-dl --extract-audio --audio-format mp3  --add-metadata --audio-quality 0 #{link}")
->>>>>>> Development
   end
 end
 
