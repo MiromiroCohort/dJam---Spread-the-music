@@ -83,19 +83,9 @@ $( document ).ready(function() {
 
 
   function shiftRow(thisRow, thisRowScore) {
-    var allRows = $(".container").find(".row")
-    var i = 0
-    do {
-      if (parseInt($(allRows[i]).find(".count").html()) <= thisRowScore) {
-        thisRow.animate({opacity: '0.5'}, "slow");
-        thisRow.animate({opacity: '1'}, "slow");  
-        thisRow.insertBefore(allRows[i])      
-        i = allRows.length +1
-      } else {
-        i++
-      }
-    }
-    while (i < allRows.length)
+    thisRow.animate({opacity: '0.5'}, "slow");
+    sortRow(thisRow, thisRowScore)
+    thisRow.animate({opacity: '1'}, "slow");  
   }
 
 
@@ -103,8 +93,7 @@ $( document ).ready(function() {
     var allRows = $(".container").find(".row")
     var i = 0
     do {
-      if (parseInt($(allRows[i]).find(".count").html()) <= thisRowScore) {
-
+      if (parseInt($(allRows[i]).find(".count").html()) < thisRowScore) {
         console.log($(thisRow))
         console.log($(allRows[i]).find(".count").html())
         $(thisRow).insertBefore($(allRows[i]))      
