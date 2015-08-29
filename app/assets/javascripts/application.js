@@ -63,10 +63,12 @@ $( document ).ready(function() {
   };
 
 
-  $(".vote_btn").on('click', function() {
+  $(".vote-btn").on('click', function() {
     var hashName = this.id
-    var score = (parseInt($("#"+hashName).closest("td").next().text())+1)
-    $("#"+hashName).closest("td").next().text(score)
+    var score = parseInt($("#" + hashName).closest("div").prev().text())+1
+    $("#" + hashName).closest("div").prev().text(score)
+    var outRow = $("#" + hashName).closest(".row")
+    shiftRow(outRow, score)
     $.ajax({
       url: "/vote?song_ref=" + this.id,
       type: "POST",
@@ -80,32 +82,50 @@ $( document ).ready(function() {
   });
 
 
+  function shiftRow(thisRow, thisRowScore) {
+    var allRows = $(".container").find(".row")
+    var i = 0
+    do {
+      if (parseInt($(allRows[i]).find(".count").html()) <= thisRowScore) {
+        thisRow.animate({opacity: '0.5'}, "slow");
+        thisRow.animate({opacity: '1'}, "slow");  
+        thisRow.insertBefore(allRows[i])      
+        i = allRows.length +1
+      } else {
+        i++
+      }
+    }
+    while (i < allRows.length)
+  }
+
+
+  function sortRow(thisRow, thisRowScore) {
+    var allRows = $(".container").find(".row")
+    var i = 0
+    do {
+      if (parseInt($(allRows[i]).find(".count").html()) <= thisRowScore) {
+
+        console.log($(thisRow))
+        console.log($(allRows[i]).find(".count").html())
+        $(thisRow).insertBefore($(allRows[i]))      
+        i = allRows.length +1
+      } else {
+        i++
+      }
+    }
+    while (i < allRows.length)
+  }
+
+
+
+  var rowList = $(".container").find(".row")
+  for (var currentRow = rowList.length-1; currentRow > -1; currentRow--){
+    rowScore = parseInt($(rowList[currentRow]).find(".count").html())
+    sortRow(rowList[currentRow], rowScore)
+  }
+
+
+
+
 });
-
- // <section class="playlist-list">
- //            <div class="panel panel-default">
- //              <div class="panel-heading">MVP Playlist Songs</div>
- //              <ul class="list-group">
-
- //                <li class="list-group-item">
- //                  <div id="1" class="row">
- //                    <a href="#" class="">
- //                      <div class="media col-xs-3">
- //                        <figure>
- //                          <img class="media-object img-rounded img-responsive"  src="http://placehold.it/125x125" alt="placehold.it/125x125" >
- //                        </figure>
- //                      </div>
- //                      <div class="col-xs-6">
- //                        <p class="list-group-item-heading"> Song Name </p>
- //                        <p class="list-group-item-text"> Artist Name </p>
- //                      </div>
- //                    </a>
- //                    <div class="col-xs-3 text-center">
- //                      <button data-id="1" type="button" class="btn btn-default btn-lg btn-block vote-button"> ^ </button>
- //                      <p class="vote-number">1337</p>
- //                    </div>
- //                  </div>
- //                </li>
-
-
 
