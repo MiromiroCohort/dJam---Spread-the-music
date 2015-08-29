@@ -21,7 +21,8 @@ class SongController < ApplicationController
   end
 
   
-  def play_top
+  def play_top(first)
+    p first
     highest = -1
     artx = ""
     song = ""
@@ -45,11 +46,15 @@ class SongController < ApplicationController
       session.close
     else 
       grep_string = "grep -E " + song.split(/\W+/).join("| grep -E ")
-      p grep_string
-
+      if first
+        exec_string = "mpc clear; mpc search artist '#{artx}' | #{grep_string} | mpc add ; mpc play ; mpc crossfade 15"
+      else
+        exec_string = "mpc clear ; mpc search artist '#{artx}' | #{grep_string} | mpc add ; mpc play" 
+      end
+      p exec_string
       this_host = @host_address
       session = Net::SSH.start( this_host, 'djam', :password => "C#ristmas25" )
-        session.exec "mpc clear ; mpc search artist \"#{artx}\" | #{grep_string} | mpc add ; mpc play"
+        session.exec exec_string
       session.close
       this_track = Track.find(song_id)
       this_track.vote_count = 0

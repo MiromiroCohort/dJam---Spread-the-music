@@ -27,13 +27,14 @@ class CatalogueController < ApplicationController
   def play_the_set
     count = 1000
     song_ctl = SongController.new
+    first=true
     while count >0 do
-      delay = song_ctl.play_top
-      p delay
-      delay = 20
+      delay = song_ctl.play_top(first)
+      delay -= 15
       x = Thread.new { sleep delay }
       x.join
       count -=1
+      first= false
     end
   end
 
@@ -54,18 +55,21 @@ class CatalogueController < ApplicationController
 
   def generate_html_list
     if Track.first
-      out_html = "<table width='500'><tr><th>Title</th></tr>"
+      out_html = "<div class='container'>"
       Track.each do |play_item|
-        out_html += "<tr><td>" + play_item.artist + " : " 
+        out_html += "<div class =row><div class='vote-cell prime' width=70%>" + play_item.artist + " : " 
         out_string = ""
         play_item.title.gsub(/\w+/) do |word|
-          out_string << word.capitalize + " "
+          if word.upcase == word
+            out_string << word.capitalize + " "
+          else 
+            out_string << word + " "
+          end
         end
-        out_html += out_string
-        out_html += "</td><td><button class='vote_btn' id='" + play_item.id + "'>vote</button></td>"
-        out_html += "<td>" + play_item.vote_count.to_s + "</td></tr>"
+        out_html += out_string + "</div>"
+        out_html += "<div class='vote-cell count' width=10%>" + play_item.vote_count.to_s + "</div>"
+        out_html += "<div class='vote-cell vote-btn' width=10% id='" + play_item.id + "'>vote</div></div>"
       end
-      out_html += "</table>"
     else
       #error message here
     end

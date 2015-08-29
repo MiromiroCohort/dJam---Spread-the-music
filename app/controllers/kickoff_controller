@@ -1,0 +1,4 @@
+class KickOff < ApplicationController
+  	cc = CatalogueController.new
+  	cc.import_library
+end
