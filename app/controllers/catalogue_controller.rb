@@ -57,18 +57,18 @@ class CatalogueController < ApplicationController
     if Track.first
       out_html = "<div class='container'>"
       Track.each do |play_item|
-        out_html += "<div class =row><div class='vote-cell prime' width=70%>" + play_item.artist + " : " 
+        out_html += "<div class='row'><div class='vote-cell prime'" + play_item.artist + " : "
         out_string = ""
         play_item.title.gsub(/\w+/) do |word|
           if word.upcase == word
             out_string << word.capitalize + " "
-          else 
+          else
             out_string << word + " "
           end
         end
         out_html += out_string + "</div>"
-        out_html += "<div class='vote-cell count' width=10%>" + play_item.vote_count.to_s + "</div>"
-        out_html += "<div class='vote-cell vote-btn' width=10% id='" + play_item.id + "'>vote</div></div>"
+        out_html += "<div class='vote-cell count'>" + play_item.vote_count.to_s + "</div>"
+        out_html += "<div class='vote-cell vote-btn' id='" + play_item.id + "'>vote</div></div>"
       end
     else
       #error message here

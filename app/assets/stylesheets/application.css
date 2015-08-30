@@ -15,12 +15,10 @@
  */
 
 #wrapper {
-
   background: -webkit-linear-gradient(left, #010101, #000410 ,#000209); /* For Safari 5.1 to 6.0 */
   background: -o-linear-gradient(right, #010101, #000410, #000209); /* For Opera 11.1 to 12.0 */
   background: -moz-linear-gradient(right, #010101, #000410, #000209); /* For Firefox 3.6 to 15 */
   background: linear-gradient(to right, #010101, #000410 ,#000209); /* Standard syntax */
-
   margin: 0 auto;
   max-width: 600px;
   padding: 0 5% 5% 5%;
@@ -39,51 +37,6 @@ body {
   font-family: 'Open Sans', sans-serif;
   font-size: 1em;
 }
-
-
-.row {
-  background: rgba(255,255,255,0.05);
-  margin: 1em;
-}
-
-.vote-cell {
-  float:left;
-  background-color: rgba(25,25,60, 0.1);
-  display:inline-block;
-  padding:1em;
-  color: #6979a5;
-  border-left: 1em;
-  height: 2.5em;
-  min-width: 2em;
-  border-radius: 2em;
-  margin: 0.25em;
-  text-align: center;
-  vertical-align: middle;
-}
-
-
-.prime {
-  display:inline-block;
-  width: 65%;
-  text-align: left;
-  border-top-left-radius: 10px;
-  border-bottom-left-radius: 10px;
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
-}
-
-.vote-btn {
-  cursor: pointer;
-  background-color: rgba(100,100,125, 0.2);
-  line-height: 100%;
-  padding-top: 1em;
-  padding-bottom: 0;
-  border: 0.25em;
-  border-style: ridge;
-  border-color: rgba(200,200,255, 0.2);
-  text-align: center;
-}
-
 
 
 /***************************************************
@@ -125,7 +78,50 @@ form {
 
 
 /***************************************************
-Body
+Voting Page
+***************************************************/
+.row {
+  background: rgba(255,255,255,0.01);
+  border-radius: 1em;
+  margin: 1em;
+  padding: 1em;
+  text-align: center;
+}
+
+.vote-cell {
+  background-color: rgba(25,25,60, 0.1);
+  color: #69f;
+  border-left: 1em;
+  border-radius: 2em;
+  vertical-align: middle;
+}
+
+.prime {
+  display: inline-block;
+  border-radius: 0.6em 0 0 0.6em;
+}
+
+.vote-btn {
+  cursor: pointer;
+  background: url('upvote.jpg') no-repeat center;
+  background-size: 50%;
+  background-color: rgba(100,100,125, 0.2);
+  border: 0.25em;
+  border-style: ridge;
+  border-color: rgba(200,200,255, 0.2);
+  height: 0.8em;
+  line-height: 100%;
+  margin: 0 auto;
+  padding-top: 1em;
+  padding-bottom: 0;
+  padding: 1em;
+  text-align: center;
+  width: 0.8em;
+}
+
+
+/***************************************************
+Add song page
 ***************************************************/
 .song-img, .add-song-button, .song-title {
 }
@@ -142,6 +138,7 @@ li {
 .add-song-button {
   margin: 0 50px
 }
+
 
 /*****************************************************************************************************
 Responsive
@@ -201,6 +198,48 @@ Responsive
     height: 22px;
     width: 43px;
     font-size: .9rem;
+  }
+
+/* Below is a work in progress to be refactored once other view sizes are finished*/
+
+  .row {
+    background: rgba(255,255,255,0.05);
+    margin: 1em;
+    padding: 0;
+  }
+
+  .vote-cell {
+    float:left;
+    background-color: rgba(25,25,60, 0.1);
+    display:inline-block;
+    padding:1em;
+    color: #69F;
+    border-left: 1em;
+    height: 2.5em;
+    min-width: 2em;
+    border-radius: 2em;
+    margin: 0.25em;
+    text-align: center;
+    vertical-align: middle;
+  }
+
+  .prime {
+    display:inline-block;
+    width: 65%;
+    text-align: left;
+    border-radius: 0.6em 0 0 0.6em;
+  }
+
+  .vote-btn {
+    cursor: pointer;
+    background-color: rgba(100,100,125, 0.2);
+    line-height: 100%;
+    padding-top: 1em;
+    padding-bottom: 0;
+    border: 0.25em;
+    border-style: ridge;
+    border-color: rgba(200,200,255, 0.2);
+    text-align: center;
   }
 }
 
