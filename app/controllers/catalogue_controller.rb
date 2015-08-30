@@ -28,9 +28,14 @@ class CatalogueController < ApplicationController
     count = 1000
     song_ctl = SongController.new
     first=true
+    offset = 20
     while count >0 do
+      if first == false
+        x = Thread.new { sleep (offset - 15) }  
+        x.join
+      end
       delay = song_ctl.play_top(first)
-      delay -= 15
+      delay -= offset
       x = Thread.new { sleep delay }
       x.join
       count -=1
@@ -53,9 +58,10 @@ class CatalogueController < ApplicationController
 
 
 
+
   def generate_html_list
     if Track.first
-      out_html = "<div class='container'>"
+      out_html = "<div class='container'><h3><%= render 'nowPlaying' %></h3>"
       Track.each do |play_item|
         out_html += "<div class =row><div class='vote-cell prime' width=70%>" + play_item.artist + " : " 
         out_string = ""

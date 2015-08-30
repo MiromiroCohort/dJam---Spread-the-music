@@ -68,7 +68,10 @@ $( document ).ready(function() {
     var score = parseInt($("#" + hashName).closest("div").prev().text())+1
     $("#" + hashName).closest("div").prev().text(score)
     var outRow = $("#" + hashName).closest(".row")
-    shiftRow(outRow, score)
+    outRow.animate({opacity: '0.5'}, "slow")
+    sortRow(outRow, score)
+    outRow.animate({opacity: '1'}, "slow");
+
     $.ajax({
       url: "/vote?song_ref=" + this.id,
       type: "POST",
@@ -81,12 +84,6 @@ $( document ).ready(function() {
     });
   });
 
-
-  function shiftRow(thisRow, thisRowScore) {
-    thisRow.animate({opacity: '0.5'}, "slow");
-    sortRow(thisRow, thisRowScore)
-    thisRow.animate({opacity: '1'}, "slow");  
-  }
 
 
   function sortRow(thisRow, thisRowScore) {
@@ -105,6 +102,8 @@ $( document ).ready(function() {
     while (i < allRows.length)
   }
 
+
+ 
 
 
   var rowList = $(".container").find(".row")
