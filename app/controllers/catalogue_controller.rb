@@ -19,32 +19,28 @@ class CatalogueController < ApplicationController
                vote_count: 1
       end
     end
-    # flash.notice = "Your library has been imported!"
-    # redirect_to menu_url
   end
-
 
   def play_the_set
     count = 1000
     song_ctl = SongController.new
     first=true
-    offset = 11
+    offset = 10
     while count >0 do
-      delay = song_ctl.play_top(first)
-      delay -= offset
-      x = Thread.new { sleep delay }
-      x.join
-      count -=1
+      delay = (song_ctl.play_top(first)) - offset
       first= false
+      # TODO - update front_end with revised playlist when next track taken
+      for i in 0..delay do
+        sleep 1
+        p "Next track countdown: " + (delay - i).to_s + " seconds"
+        # TODO push to front end
+      end
     end
   end
 
   def search_playlist(search_string)
-
-    # TODO add the ability to echo | grep the mpc playlist
-
+    # TODO Ajax call to search db
   end
-
 
   def vote
     this_track = Track.find(params[:song_ref])
@@ -52,12 +48,9 @@ class CatalogueController < ApplicationController
     this_track.save
   end
 
-
-
-
   def generate_html_list
     if Track.first
-      out_html = "<div class='container'><h3><%= render 'nowPlaying' %></h3>"
+      out_html = "<div class='container'>"
       Track.each do |play_item|
         out_html += "<div class='row'><div class='vote-cell prime' width=70%>" + play_item.artist + " : " 
         out_string = ""
@@ -73,13 +66,10 @@ class CatalogueController < ApplicationController
         out_html += "<div class='vote-cell vote-btn' width=10% id='" + play_item.id + "'>vote</div></div>"
       end
     else
-      #error message here
+      out_html = "<div class='container'><h2>Sorry - there are no items in this playlist</h2></div>"
     end
     return out_html
   end
 
-
-  def menu
-  end
 
 end

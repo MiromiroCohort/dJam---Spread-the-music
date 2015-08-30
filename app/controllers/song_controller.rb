@@ -49,7 +49,7 @@ class SongController < ApplicationController
       if first
         exec_string = "mpc clear; mpc crossfade 10; mpc consume on; mpc single off; mpc search artist '#{artx}' title '#{song}'| mpc add ; mpc play ; "
       else
-        exec_string = "mpc findadd artist \"#{artx}\" title \"#{song}\" ; mpc next"
+        exec_string = "mpc search artist '#{artx}' title '#{song}' | mpc add"
       end
       
       this_host = @host_address
@@ -64,14 +64,11 @@ class SongController < ApplicationController
       this_track.vote_count = 0
       this_track.save
       @now_playing = "#{artx} : #{song}"
+
       return length
     end
     redirect_to :makelist
   end
-
-
-
-
 end
 
 

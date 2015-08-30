@@ -81,9 +81,8 @@ $( document ).ready(function() {
       error: function(data) {
         alert('Sorry - your vote was not added');
       }
-    });
+    }); 
   });
-
 
 
   function sortRow(thisRow, thisRowScore) {
@@ -102,18 +101,15 @@ $( document ).ready(function() {
     while (i < allRows.length)
   }
 
-
- 
-
-
-  var rowList = $(".container").find(".row")
-  for (var currentRow = rowList.length-1; currentRow > -1; currentRow--){
-    rowScore = parseInt($(rowList[currentRow]).find(".count").html())
-    sortRow(rowList[currentRow], rowScore)
+  function sortPage () {
+    var rowList = $(".container").find(".row")
+    for (var currentRow = rowList.length-1; currentRow > -1; currentRow--){
+      rowScore = parseInt($(rowList[currentRow]).find(".count").html())
+      sortRow(rowList[currentRow], rowScore)
+    }
   }
 
-
-
+  sortPage();
 
 });
 

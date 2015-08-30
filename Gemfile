@@ -16,6 +16,7 @@ gem 'youtube-downloader'
 gem 'youtube-dl.rb'
 
 gem 'net-ssh', '~> 2.9.2'
+gem 'net-scp', '~> 1.2.1'
 gem 'ruby-mp3info', '~> 0.8.7'
 
 group :development, :test do
