@@ -68,7 +68,7 @@ class CatalogueController < ApplicationController
         end
         out_html += out_string + "</div>"
         out_html += "<div class='vote-cell count'>" + play_item.vote_count.to_s + "</div>"
-        out_html += "<div class='vote-cell vote-btn' id='" + play_item.id + "'>vote</div></div>"
+        out_html += "<div class='vote-cell vote-btn' id='" + play_item.id + "'> </div></div>"
       end
     else
       #error message here

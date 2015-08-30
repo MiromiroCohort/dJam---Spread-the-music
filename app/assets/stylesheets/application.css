@@ -83,8 +83,7 @@ Voting Page
 .row {
   background: rgba(255,255,255,0.01);
   border-radius: 1em;
-  margin: 1em;
-  padding: 1em;
+  margin: 2em 0;
   text-align: center;
 }
 
@@ -101,6 +100,11 @@ Voting Page
   border-radius: 0.6em 0 0 0.6em;
 }
 
+.count {
+  margin: 0 auto;
+  width: 1em;
+}
+
 .vote-btn {
   cursor: pointer;
   background: url('upvote.jpg') no-repeat center;
@@ -112,8 +116,6 @@ Voting Page
   height: 0.8em;
   line-height: 100%;
   margin: 0 auto;
-  padding-top: 1em;
-  padding-bottom: 0;
   padding: 1em;
   text-align: center;
   width: 0.8em;
@@ -158,6 +160,23 @@ Responsive
     width: 40px;
     font-size: .8rem;
   }
+
+  .row {
+    margin: 2em 1em;
+  }
+
+  .vote-cell {
+    margin: 0.2em;
+  }
+
+  .prime {
+    padding: 0;
+    width: 100%;
+  }
+
+  .count, .vote-btn {
+    display: inline-block;
+  }
 }
 
 
@@ -173,6 +192,31 @@ Responsive
 
   form {
     font-size: 0.9rem;
+  }
+
+  .row {
+    background: rgba(255,255,255,0.05);
+  }
+
+  .vote-cell {
+    float: left;
+    padding: 1em;
+    margin: 0.25em;
+    text-align: center;
+  }
+
+  .prime {
+    width: 59%;
+    text-align: left;
+    border-radius: 0.6em 0 0 0.6em;
+  }
+}
+
+
+
+@media screen and (min-width:550px) {
+  .prime {
+    width: 63%;
   }
 }
 
@@ -200,46 +244,24 @@ Responsive
     font-size: .9rem;
   }
 
-/* Below is a work in progress to be refactored once other view sizes are finished*/
-
-  .row {
-    background: rgba(255,255,255,0.05);
-    margin: 1em;
-    padding: 0;
-  }
-
   .vote-cell {
-    float:left;
-    background-color: rgba(25,25,60, 0.1);
-    display:inline-block;
-    padding:1em;
-    color: #69F;
-    border-left: 1em;
-    height: 2.5em;
-    min-width: 2em;
-    border-radius: 2em;
-    margin: 0.25em;
-    text-align: center;
-    vertical-align: middle;
-  }
-
-  .prime {
-    display:inline-block;
-    width: 65%;
-    text-align: left;
-    border-radius: 0.6em 0 0 0.6em;
+    min-height: 2.5em;
+    min-width: 1.5em;
   }
 
   .vote-btn {
-    cursor: pointer;
-    background-color: rgba(100,100,125, 0.2);
-    line-height: 100%;
-    padding-top: 1em;
     padding-bottom: 0;
-    border: 0.25em;
-    border-style: ridge;
-    border-color: rgba(200,200,255, 0.2);
-    text-align: center;
   }
 }
 
+
+
+@media screen and (min-width:680px) {
+  .prime {
+    width: 65%;
+  }
+
+  .vote-btn {
+    padding-bottom: 0;
+  }
+}
