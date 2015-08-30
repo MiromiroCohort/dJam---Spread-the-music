@@ -28,12 +28,8 @@ class CatalogueController < ApplicationController
     count = 1000
     song_ctl = SongController.new
     first=true
-    offset = 20
+    offset = 11
     while count >0 do
-      if first == false
-        x = Thread.new { sleep (offset - 15) }  
-        x.join
-      end
       delay = song_ctl.play_top(first)
       delay -= offset
       x = Thread.new { sleep delay }
@@ -63,7 +59,7 @@ class CatalogueController < ApplicationController
     if Track.first
       out_html = "<div class='container'><h3><%= render 'nowPlaying' %></h3>"
       Track.each do |play_item|
-        out_html += "<div class =row><div class='vote-cell prime' width=70%>" + play_item.artist + " : " 
+        out_html += "<div class='row'><div class='vote-cell prime' width=70%>" + play_item.artist + " : " 
         out_string = ""
         play_item.title.gsub(/\w+/) do |word|
           if word.upcase == word

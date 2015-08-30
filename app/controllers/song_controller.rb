@@ -6,7 +6,7 @@ class SongController < ApplicationController
   @now_playing = ""
 
   @host_address = '127.0.0.1'
-# Runs onl localhost - check ifconfig for actual network address; prob: '192.168.1.34'
+# Runs on localhost - check ifconfig for actual network address; prob: '192.168.1.34'
     host_address = @host_address
     session = Net::SSH.start( host_address, 'djam', :password => "C#ristmas25" )
     session.exec "mpc update"
@@ -42,16 +42,21 @@ class SongController < ApplicationController
     if highest == 0
       self.stop
     else 
+
+      artx = artx.split("'")[0]
+      song = song.split("'")[0]
+
       if first
         exec_string = "mpc clear; mpc crossfade 10; mpc consume on; mpc single off; mpc search artist '#{artx}' title '#{song}'| mpc add ; mpc play ; "
       else
-        exec_string = "mpc findadd artist '#{artx}' title '#{song}'"
+        exec_string = "mpc findadd artist \"#{artx}\" title \"#{song}\" ; mpc next"
       end
       
       this_host = @host_address
       session = Net::SSH.start( this_host, 'djam', :password => "C#ristmas25" )
         session.exec "mpc crop"
         session.exec exec_string
+        session.exec "mpc idle"
         p exec_string
       session.close
 
