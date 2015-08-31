@@ -5,7 +5,7 @@ class CatalogueController < ApplicationController
 @party_over = false
 
   def import_library
-    music_dir = '/home/del/music_temp'
+    music_dir = '/media/mpd_music'
     Dir.foreach(music_dir) do |item|
       next if item == '.' or item == '..'
       this_track = Mp3Info.open("#{music_dir}/#{item}")
