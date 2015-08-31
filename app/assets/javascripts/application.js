@@ -88,8 +88,8 @@ $( document ).ready(function() {
     do {
       if (parseInt($(allRows[i]).find(".count").html()) <= thisRowScore) {
         thisRow.animate({opacity: '0.5'}, "slow");
-        thisRow.animate({opacity: '1'}, "slow");  
-        thisRow.insertBefore(allRows[i])      
+        thisRow.animate({opacity: '1'}, "slow");
+        thisRow.insertBefore(allRows[i])
         i = allRows.length +1
       } else {
         i++
@@ -107,7 +107,7 @@ $( document ).ready(function() {
 
         console.log($(thisRow))
         console.log($(allRows[i]).find(".count").html())
-        $(thisRow).insertBefore($(allRows[i]))      
+        $(thisRow).insertBefore($(allRows[i]))
         i = allRows.length +1
       } else {
         i++
@@ -126,6 +126,22 @@ $( document ).ready(function() {
 
 
 
+  $('.prime').on('mouseover', function() {
+    if ($(this).children().length > 0) {
+      $(this).marquee("resume")
+    } else {
+      $(this).marquee( { duplicated: true, delayBeforeStart:0 } );
+    }
+  });
+
+  $(".prime").hover(function(){
+    $(this).marquee('resume');
+  }, function(){
+    $(this).marquee('pause');
+  })
 
 });
+
+
+
 
