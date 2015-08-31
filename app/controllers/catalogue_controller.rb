@@ -38,7 +38,7 @@ attr_reader :playing_now
     File.delete(file_path_and_name)
   end
 
-  
+
 
 
   def play_the_set
@@ -81,18 +81,18 @@ attr_reader :playing_now
     if Track.first
       out_html = "<div class='container'>"
       Track.each do |play_item|
-        out_html += "<div class='row'><div class='vote-cell prime' width=70%>" + play_item.artist + " : " 
+        out_html += "<div class='row'><div class='vote-cell prime'>" + play_item.artist + " : "
         out_string = ""
         play_item.title.gsub(/\w+/) do |word|
           if word.upcase == word
             out_string << word.capitalize + " "
-          else 
+          else
             out_string << word + " "
           end
         end
         out_html += out_string + "</div>"
-        out_html += "<div class='vote-cell count' width=10%>" + play_item.vote_count.to_s + "</div>"
-        out_html += "<div class='vote-cell vote-btn' width=10% id='" + play_item.id + "'>vote</div></div>"
+        out_html += "<div class='vote-cell count'>" + play_item.vote_count.to_s + "</div>"
+        out_html += "<div class='vote-cell vote-btn' id='" + play_item.id + "'> </div></div>"
       end
     else
       out_html = "<div class='container'><h2>Sorry - there are no items in this playlist</h2></div>"
