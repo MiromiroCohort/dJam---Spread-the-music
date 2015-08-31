@@ -2,22 +2,16 @@ require 'net/ssh'
 require 'mongo'
 
 class SongController < ApplicationController
+  attr_reader :now_playing
 
-  @now_playing = ""
 
-  @host_address = '127.0.0.1'
-# Runs on localhost - check ifconfig for actual network address; prob: '192.168.1.34'
-    host_address = @host_address
-    session = Net::SSH.start( host_address, 'djam', :password => "C#ristmas25" )
-    session.exec "mpc update"
-    session.close
-
+  def open_ssh_connection
+    session = Net::SSH.start('127.0.0.1', 'djam', :password => "C#ristmas25")
+  end
 
 
   def stop
-    host_address = @host_address
-    #cannot use @host_address directly due to SSH interpretation of @ symbol
-    session = Net::SSH.start( host_address, 'djam', :password => "C#ristmas25" )
+    session = open_ssh_connection
       session.exec "mpc stop"
     session.close
   end
@@ -38,33 +32,26 @@ class SongController < ApplicationController
         song_id = item[:_id]
       end
     end
-
     if highest == 0
       self.stop
     else 
-
       artx = artx.split("'")[0]
       song = song.split("'")[0]
-
       if first
         exec_string = "mpc clear; mpc crossfade 10; mpc consume on; mpc single off; mpc search artist '#{artx}' title '#{song}'| mpc add ; mpc play ; "
       else
         exec_string = "mpc search artist '#{artx}' title '#{song}' | mpc add"
       end
-      
-      this_host = @host_address
-      session = Net::SSH.start( this_host, 'djam', :password => "C#ristmas25" )
+    session = open_ssh_connection
         session.exec "mpc crop"
         session.exec exec_string
         session.exec "mpc idle"
         p exec_string
       session.close
-
       this_track = Track.find(song_id)
       this_track.vote_count = 0
       this_track.save
       @now_playing = "#{artx} : #{song}"
-
       return length
     end
     redirect_to :makelist

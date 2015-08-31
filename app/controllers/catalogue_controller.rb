@@ -2,6 +2,8 @@ require 'mp3info'
 
 class CatalogueController < ApplicationController
 
+attr_reader :playing_now
+
 @party_over = false
 
   def import_library
@@ -28,6 +30,7 @@ class CatalogueController < ApplicationController
     offset = 10
     while count >0 do
       delay = (song_ctl.play_top(first)) - offset
+      @playing_now = song_ctl.now_playing
       first= false
       # TODO - update front_end with revised playlist when next track taken
       for i in 0..delay do
