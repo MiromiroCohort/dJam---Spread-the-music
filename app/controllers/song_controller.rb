@@ -38,7 +38,7 @@ class SongController < ApplicationController
       artx = artx.split("'")[0]
       song = song.split("'")[0]
       if first
-        exec_string = "mpc clear; mpc crossfade 10; mpc consume on; mpc single off; mpc search artist '#{artx}' title '#{song}'| mpc add ; mpc play ; "
+        exec_string = "mpc clear; mpc crossfade 20; mpc consume on; mpc single off; mpc search artist '#{artx}' title '#{song}'| mpc add ; mpc play ; "
       else
         exec_string = "mpc search artist '#{artx}' title '#{song}' | mpc add"
       end
@@ -53,7 +53,6 @@ class SongController < ApplicationController
       @now_playing = "#{artx} : #{song}"
       return length
     end
-    redirect_to :makelist
   end
 end
 

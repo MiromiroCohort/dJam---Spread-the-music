@@ -1,6 +1,7 @@
 <%thisCC = CatalogueController.new
-this_html = thisCC.generate_html_list %>
-<%provide(:now_playing, thisCC.playing_now)%>
+this_html = thisCC.generate_html_list 
+this_track = Track.first%>
+<%provide(:now_playing, "#{this_track.artist} : #{this_track.title}" )%>
 <article>
   <header>
     <h1 class="list-page-h1">DJam</h1>

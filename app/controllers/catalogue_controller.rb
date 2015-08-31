@@ -5,6 +5,8 @@ class CatalogueController < ApplicationController
 attr_reader :playing_now
 
 @party_over = false
+@playing_now
+@duration
 
   def import_library
     music_dir = '/media/mpd_music'
@@ -24,7 +26,7 @@ attr_reader :playing_now
   end
 
   def self.transfer_to_client_dir(file_path_and_name)
-    Net::SCP.upload!("192.168.1.34", "djam", file_path_and_name,  "/media/mpd_music", :ssh => { :password => "C#ristmas25" })
+    Net::SCP.upload!("127.0.0.1", "djam", file_path_and_name,  "/media/mpd_music", :ssh => { :password => "C#ristmas25" })
     new_track = Mp3Info.open(file_path_and_name)
     new_track = Track.create playlist_id:0,
     playlist_position: 0,
@@ -36,6 +38,10 @@ attr_reader :playing_now
     File.delete(file_path_and_name)
   end
 
+  def playing_now
+    return @playing_now
+  end
+
 
   def play_the_set
     count = 1000
@@ -43,12 +49,15 @@ attr_reader :playing_now
     first=true
     offset = 10
     while count >0 do
-      delay = (song_ctl.play_top(first)) - offset
+      @duration = (song_ctl.play_top(first)) - offset
       first= false
       # TODO - update front_end with revised playlist when next track taken
-      for i in 0..delay do
+      for i in 0..@duration do
         sleep 1
-        p "Next track countdown: " + (delay - i).to_s + " seconds"
+        mins = (@duration-i)/60
+        secs = (@duration - i) - (mins*60)
+        # p "Next track countdown: " + mins.to_s + " mins "  + secs.to_s + " seconds"
+        @playing_now = song_ctl.now_playing
         # TODO push to front end
       end
     end
