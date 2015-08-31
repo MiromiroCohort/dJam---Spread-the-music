@@ -111,5 +111,12 @@ $( document ).ready(function() {
 
   sortPage();
 
+  function remainingTime() {
+    var counter = $("#countdown").text()
+    var mins = Math.floor(counter/60)
+    var secs = counter - (60*mins)
+    $("#countdown").text(mins + " : " + secs)
+  }
+
 });
 

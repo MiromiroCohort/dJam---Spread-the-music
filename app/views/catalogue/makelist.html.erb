@@ -1,13 +1,22 @@
 <%thisCC = CatalogueController.new
 this_html = thisCC.generate_html_list 
 this_track = Track.first%>
-<%provide(:now_playing, "#{this_track.artist} : #{this_track.title}" )%>
+<%provide(:now_playing, "#{Playing.first.artist} : #{Playing.first.title}" )%>
+<%provide(:countdown, "#{Playing.first.length}")%>
 <article>
   <header>
     <h1 class="list-page-h1">DJam</h1>
     <h2 class="list-page-h2">Playlist Name Goes Here!</h2>
   </header>
 
-  <div class="row"><%= yield(:now_playing) %> </div>
+  <div class="playing row">
+    <p>Now Playing: </p> 
+    <div class="now-playing">
+      <%= yield(:now_playing) %> 
+    </div>
+    <div class="now-playing" id="countdown">
+      <%= yield(:countdown) %>
+    </div>
+  </div>
   <%= raw this_html %>
 </article>

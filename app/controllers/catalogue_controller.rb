@@ -38,9 +38,7 @@ attr_reader :playing_now
     File.delete(file_path_and_name)
   end
 
-  def playing_now
-    return @playing_now
-  end
+  
 
 
   def play_the_set
@@ -49,16 +47,22 @@ attr_reader :playing_now
     first=true
     offset = 10
     while count >0 do
-      @duration = (song_ctl.play_top(first)) - offset
+      this_song_hash = (song_ctl.play_top(first))
+      if not Playing.first
+        playing_now = Playing.create
+      end
+      playing_now = Playing.first
+      playing_now.artist = this_song_hash[:artist]
+      playing_now.title = this_song_hash[:song_title]
+      playing_now.length = this_song_hash[:song_length]
+      playing_now.save
       first= false
       # TODO - update front_end with revised playlist when next track taken
-      for i in 0..@duration do
+      for i in 0..this_song_hash[:song_length] do
         sleep 1
-        mins = (@duration-i)/60
-        secs = (@duration - i) - (mins*60)
-        # p "Next track countdown: " + mins.to_s + " mins "  + secs.to_s + " seconds"
-        @playing_now = song_ctl.now_playing
-        # TODO push to front end
+        mins = this_song_hash[:song_length]/60
+        secs = (this_song_hash[:song_length] - i) - (mins*60)
+        p "Track controller countdown: " + mins.to_s + " mins "  + secs.to_s + " seconds"
       end
     end
   end

@@ -35,6 +35,7 @@ class SongController < ApplicationController
     if highest == 0
       self.stop
     else 
+      out_hash = {:artist => artx, :song_title => song, :song_length => length}
       artx = artx.split("'")[0]
       song = song.split("'")[0]
       if first
@@ -51,7 +52,7 @@ class SongController < ApplicationController
       this_track.vote_count = 0
       this_track.save
       @now_playing = "#{artx} : #{song}"
-      return length
+      return out_hash
     end
   end
 end
