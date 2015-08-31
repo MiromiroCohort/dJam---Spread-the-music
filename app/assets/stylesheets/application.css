@@ -77,6 +77,7 @@ form {
 }
 
 
+
 /***************************************************
 Voting Page
 ***************************************************/
@@ -97,7 +98,10 @@ Voting Page
 
 .prime {
   display: inline-block;
-  border-radius: 0.6em 0 0 0.6em;
+  border-radius: 0.6em;
+  height: 1.4rem;
+  overflow: hidden;
+  width: 100%;
 }
 
 .count {
@@ -113,13 +117,14 @@ Voting Page
   border: 0.25em;
   border-style: ridge;
   border-color: rgba(200,200,255, 0.2);
-  height: 0.8em;
+  height: 0.5em;
   line-height: 100%;
   margin: 0 auto;
   padding: 1em;
   text-align: center;
-  width: 0.8em;
+  width: 0.5em;
 }
+
 
 
 /***************************************************
@@ -162,20 +167,23 @@ Responsive
   }
 
   .row {
-    margin: 2em 1em;
+    background: rgba(255,255,255,0.05);
   }
 
   .vote-cell {
-    margin: 0.2em;
+    float:left;
+    display:inline-block;
+    padding:1em;
+    margin: 0.25em;
   }
+
 
   .prime {
-    padding: 0;
-    width: 100%;
-  }
-
-  .count, .vote-btn {
-    display: inline-block;
+    border-radius: 0.6em 0 0 0.6em;
+    height: 0.6rem;
+    overflow: hidden;
+    text-align: left;
+    width: 54%;
   }
 }
 
@@ -194,21 +202,8 @@ Responsive
     font-size: 0.9rem;
   }
 
-  .row {
-    background: rgba(255,255,255,0.05);
-  }
-
-  .vote-cell {
-    float: left;
-    padding: 1em;
-    margin: 0.25em;
-    text-align: center;
-  }
-
   .prime {
-    width: 59%;
-    text-align: left;
-    border-radius: 0.6em 0 0 0.6em;
+    width: 63%;
   }
 }
 
@@ -216,7 +211,12 @@ Responsive
 
 @media screen and (min-width:550px) {
   .prime {
-    width: 63%;
+    width: 66%;
+  }
+
+  .vote-btn {
+    height: 0.8em;
+    width: 0.8em;
   }
 }
 
@@ -241,16 +241,16 @@ Responsive
     border-radius: 5px;
     height: 22px;
     width: 43px;
-    font-size: .9rem;
+    font-size: 0.9rem;
   }
 
-  .vote-cell {
-    min-height: 2.5em;
-    min-width: 1.5em;
+  .prime {
+    width: 69%;
   }
 
   .vote-btn {
-    padding-bottom: 0;
+    height: 1em;
+    width: 1em;
   }
 }
 
@@ -258,10 +258,11 @@ Responsive
 
 @media screen and (min-width:700px) {
   .prime {
-    width: 65%;
+    width: 72%;
   }
 
   .vote-btn {
-    padding-bottom: 0;
+    height: 1.2em;
+    width: 1.2em;
   }
 }
