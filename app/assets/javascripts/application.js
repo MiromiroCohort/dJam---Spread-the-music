@@ -124,22 +124,6 @@ $( document ).ready(function() {
     sortRow(rowList[currentRow], rowScore)
   }
 
-
-
-  $('.prime').on('mouseover', function() {
-    if ($(this).children().length > 0) {
-      $(this).marquee("resume")
-    } else {
-      $(this).marquee( { duplicated: true, delayBeforeStart:0 } );
-    }
-  });
-
-  $(".prime").hover(function(){
-    $(this).marquee('resume');
-  }, function(){
-    $(this).marquee('pause');
-  })
-
 });
 
 
