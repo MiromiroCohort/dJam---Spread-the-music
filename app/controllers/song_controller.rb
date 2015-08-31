@@ -46,7 +46,6 @@ class SongController < ApplicationController
         session.exec "mpc crop"
         session.exec exec_string
         session.exec "mpc idle"
-        p exec_string
       session.close
       this_track = Track.find(song_id)
       this_track.vote_count = 0

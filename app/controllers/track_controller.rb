@@ -31,7 +31,6 @@ class TrackController < ApplicationController
     length += (t[1].to_i * 60) * 60
     length += t[2].to_i * 60
     length += t[3].to_i
-    p "Song length: #{length}"
     song_download = YoutubeScraper.scrape_audio(video_id)
     mp3_tagger(artist, title, video_id, length)
     redirect_to '/index'
@@ -44,14 +43,9 @@ class TrackController < ApplicationController
       mp3.tag.artist = artist
       mp3.tag.title = title
       mp3.tag.length = length
-      p mp3
     end
-    transfer_to_client_dir(path_name)
+    CatalogueController.transfer_to_client_dir(path_name)
   end
 
-  def transfer_to_client_dir(file_path_and_name)
-    Net::SCP.upload!("192.168.1.34", "djam", file_path_and_name,  "/media/mpd_music", :ssh => { :password => "C#ristmas25" })
-    File.delete(file_path_and_name)
-  end
 
 end
