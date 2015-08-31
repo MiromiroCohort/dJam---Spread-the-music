@@ -1,4 +1,7 @@
 require 'mp3info'
+require 'net/ssh'
+require 'net/scp'
+
 
 class TrackController < ApplicationController
 
@@ -34,11 +37,19 @@ class TrackController < ApplicationController
   end
 
   def mp3_tagger(artist, title, video_id, length)
-    Mp3Info.open("#{Rails.root}/#{title}-#{video_id}.mp3") do |mp3|
+    path_name = (Dir.glob("#{Rails.root}/*#{video_id}.mp3")[0])
+    p path_name
+    Mp3Info.open(path_name) do |mp3|
       mp3.tag.artist = artist
       mp3.tag.title = title
       mp3.tag.length = length
+      p mp3
     end
+    transfer_to_client_dir(path_name)
   end
-end
 
+  def transfer_to_client_dir(file_path_and_name)
+    Net::SCP.upload!("192.168.1.34", "djam", file_path_and_name,  "/home/djam/music_temp", :ssh => { :password => "C#ristmas25" })
+  end
+
+end
