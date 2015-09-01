@@ -14,13 +14,28 @@
  *= require_self
  */
 
+.djam {
+  width: 100%;
+  text-align: right;
+  font-size: 3em;
+  line-height: 2.6em;
+  max-height: 75px;
+  background: url('djam_sml.jpg') no-repeat left;  
+  background-color: #0e111e;
+  font-family: 'PT Sans', sans-serif;
+}
+
+.nav {
+
+}
+
+img {
+  width: 100%;
+  padding-top: 2em;
+}
+
 #wrapper {
-
-  background: -webkit-linear-gradient(left, #010101, #000410 ,#000209); /* For Safari 5.1 to 6.0 */
-  background: -o-linear-gradient(right, #010101, #000410, #000209); /* For Opera 11.1 to 12.0 */
-  background: -moz-linear-gradient(right, #010101, #000410, #000209); /* For Firefox 3.6 to 15 */
-  background: linear-gradient(to right, #010101, #000410 ,#000209); /* Standard syntax */
-
+  background-color: rgba(255,255,255,0);
   margin: 0 auto;
   max-width: 600px;
   padding: 0 5% 5% 5%;
@@ -85,6 +100,21 @@ body {
   text-align: center;
 }
 
+.choice {
+  width: 40%;
+  padding: 1em;
+  font-size: 1.2em;
+  cursor: pointer;
+  background-color: rgba(100,100,125, 0.2);
+  line-height: 100%;
+  padding-top: 1em;
+  padding-bottom: 0;
+  border: 0.25em;
+  border-style: ridge;
+  border-color: rgba(200,200,255, 0.2);
+  text-align: center;
+}
+
 .playing {
   background-color: #000;
 }
@@ -117,13 +147,9 @@ body {
 Heading
 ***************************************************/
 header {
-  background: linear-gradient(#0A0A0A, transparent 10%),
-              linear-gradient(0deg, #0A0A0A, transparent),
-              url('discoballbackground.png') no-repeat center;
-  background-size: 100%;
   font-family: 'PT Sans Narrow', sans-serif;
   padding: 2%;
-  text-align: center;
+  text-align: left;
 }
 
 h1, .list-page-h2 {
@@ -131,7 +157,10 @@ h1, .list-page-h2 {
   font-size: 1.5rem;
   font-weight: bold;
   margin: 2% 0 2% 5%;
-  text-align: left;
+  text-align: right;
+  vertical-align: top;
+  padding-right: 2em;
+  display: inline;
   text-shadow:  1px 1px 1px #000, 2px 3px 10px #AAA;
 }
 

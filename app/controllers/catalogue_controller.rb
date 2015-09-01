@@ -44,20 +44,25 @@ attr_reader :party_over
     this_song_hash = (song_ctl.play_top(first))
     if not Playing.first
       playing_now = Playing.create
-    end
-    while not @party_over do
+    else
       playing_now = Playing.first
-      playing_now.artist = this_song_hash[:artist]
-      playing_now.title = this_song_hash[:song_title]
-      playing_now.length = this_song_hash[:song_length]
-      playing_now.save
+    end
+    playing_now.artist = this_song_hash[:artist]
+    playing_now.title = this_song_hash[:song_title]
+    playing_now.length = this_song_hash[:song_length]
+    playing_now.save
+    while not @party_over do
       first= false
       this_song_hash[:song_length].times do
         playing_now.length -=1
         playing_now.save
         sleep 1
-        if playing_now.length == 10
+        if playing_now.length == 180 || playing_now.length == 120
           this_song_hash = (song_ctl.play_top(first))
+          playing_now.artist = this_song_hash[:artist]
+          playing_now.title = this_song_hash[:song_title]
+          playing_now.length = this_song_hash[:song_length]
+          playing_now.save
         end
       end
     end

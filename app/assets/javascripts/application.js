@@ -47,7 +47,6 @@ $( document ).ready(function() {
 
 
   function displaySongs(songs){
-    console.log(songs)
     var items = [];
     $.each(songs, function( song ) {
       items.push( "<li id=" + song + ">" +
@@ -87,8 +86,6 @@ $( document ).ready(function() {
     var i = 0
     do {
       if (parseInt($(allRows[i]).find(".count").html()) < thisRowScore) {
-        console.log($(thisRow))
-        console.log($(allRows[i]).find(".count").html())
         $(thisRow).insertBefore($(allRows[i]))      
         i = allRows.length +1
       } else {
@@ -115,9 +112,9 @@ $( document ).ready(function() {
       if (secs.length == 1){
         secs = "0" + secs
       }
-      if (thisTitle !== $("#song-title") && (thisTitle !== "")) {
-        sortPage()
-        thisTitle = $("#song-title")
+      if (thisTitle != ($("#song-title").html().trim())){
+        thisTitle = ($("#song-title").html().trim())
+        zeroVoteCount(thisTitle)
       }
       $("#countdown").html(mins + ":" +secs)
       $.ajax({
@@ -129,16 +126,42 @@ $( document ).ready(function() {
           $('#length-field').html(data["length"])
         },
         error: function(data) {
-          alert('Sorry - did not get anything');
+          $(".wrapper").append("<h2>Something has gone wrong.  Please alert your host")
         }
       })
     }, 1000);
   }
 
+  function zeroVoteCount(nowPlayingSong) {
+    var playListRows = $(".container").find(".row")
 
+    for (var i = 0; i<playListRows.length; i++) {
+      if ($(playListRows[i]).find(".prime").html().trim() == nowPlayingSong) {
+        $(playListRows[i]).find(".count").html(0)
+        console.log($(playListRows[i]).find(".count").html(0) + " " + nowPlayingSong)
+        sortPage()
+      }
+    }
+  }
 
-sortPage()
-runTimer()
+  try {
+    if ($("#song-title").html().trim() != "Nothing is playing yet") {
+      sortPage()
+      runTimer()
+    }
+  } catch(e) {
+    if ($(".djam").find("h1").html() == "") {
+      $(".djam").hide()
+    }
+  }
+
+  $("#guest").on('click', function() {
+    console.log("guest")
+  });
+
+  $("#host").on('click', function() {
+    console.log("host")
+  });
 
 });
 

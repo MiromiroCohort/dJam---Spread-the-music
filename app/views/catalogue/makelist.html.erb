@@ -1,14 +1,16 @@
 <%thisCC = CatalogueController.new
 this_html = thisCC.generate_html_list 
 this_track = Track.first%>
-<%provide(:now_playing, "#{Playing.first.artist} : #{Playing.first.title}" )%>
-<%provide(:countdown, "#{Playing.first.length}")%>
-<article>
-  <header>
-    <h1 class="list-page-h1">DJam</h1>
-    <h2 class="list-page-h2">Playlist Name Goes Here!</h2>
-  </header>
+<% if Playing.first
+    provide(:now_playing, "#{Playing.first.artist} : #{Playing.first.title}" )
+    provide(:countdown, "#{Playing.first.length}")
+  else
+    provide(:now_playing, "Nothing is playing yet" )
+    provide(:countdown, 0)
+  end
+%>
 
+<article>
   <div class="playing row">
     <span id="length-field"></span>
     <p>Now Playing: </p> 
