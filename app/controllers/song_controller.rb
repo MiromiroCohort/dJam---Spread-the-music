@@ -39,7 +39,7 @@ class SongController < ApplicationController
       if first
         exec_string = "mpc update; mpc clear; mpc crossfade 0; mpc consume on; mpc single off; mpc search artist '#{artx}' title '#{song}'| mpc add ; mpc play ; "
       else
-        exec_string = "mpc search artist '#{artx}' title '#{song}' | mpc add ; mpc next "
+        exec_string = "mpc search artist '#{artx}' title '#{song}' | mpc add ; mpc next ; mpc play"
       end
     session = open_ssh_connection
         session.exec "mpc crop"

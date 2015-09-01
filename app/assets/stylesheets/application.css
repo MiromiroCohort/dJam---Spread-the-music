@@ -37,7 +37,8 @@ body {
   background: linear-gradient(to right, #010101, #000410 ,#000209); /* Standard syntax */
   color: #DDD;
   font-family: 'Open Sans', sans-serif;
-  font-size: 1em;
+  /*font-size: 1em;*/
+  font-size: 2.2vw;
 }
 
 
@@ -66,8 +67,8 @@ body {
   display:inline-block;
   width: 65%;
   text-align: left;
-  border-top-left-radius: 10px;
-  border-bottom-left-radius: 10px;
+  border-top-left-radius: 1em;
+  border-bottom-left-radius: 1em;
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
 }
@@ -207,7 +208,7 @@ Responsive
 
 
 
-@media screen and (min-width:600px) {
+@media screen and (min-width:750px) {
   h1, .list-page-h2 {
     font-size: 2.5rem;
   }
@@ -218,6 +219,10 @@ Responsive
 
   form {
     font-size: 1.1rem;
+  }
+
+  body {
+    font-size: 1em;
   }
 
   .add-song-button {

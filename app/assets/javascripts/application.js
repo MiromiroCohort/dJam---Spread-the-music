@@ -108,11 +108,16 @@ $( document ).ready(function() {
 
 
   function runTimer() {
+    var thisTitle = ""
     var thisTimer = setInterval(function () {
       var mins = Math.floor(parseInt($("#length-field").html())/60)
       var secs = String(parseInt($("#length-field").html()) - (60*mins))
       if (secs.length == 1){
         secs = "0" + secs
+      }
+      if (thisTitle !== $("#song-title") && (thisTitle !== "")) {
+        sortPage()
+        thisTitle = $("#song-title")
       }
       $("#countdown").html(mins + ":" +secs)
       $.ajax({
@@ -132,7 +137,7 @@ $( document ).ready(function() {
 
 
 
-
+sortPage()
 runTimer()
 
 });
