@@ -6,12 +6,12 @@ Rails.application.routes.draw do
   resources :users
   resources :hosts
   post '/track/add' => 'track#add'
-  root 'track#new'
+  root 'site#index'
   post '/vote' => 'catalogue#vote'
   get '/makelist' => 'catalogue#makelist.html'
   get '/playing' => 'catalogue#now_playing'
-
   get '/menu' => 'catalogue#menu'
   get '/import' => 'catalogue#import_library'
   get '/play' => 'catalogue#play_the_set'
+  get '/playlists' => 'playlists#index'
 end
