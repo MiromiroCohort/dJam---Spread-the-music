@@ -11,7 +11,7 @@ this_track = Track.first%>
 
   <div class="playing row">
     <p>Now Playing: </p> 
-    <div class="now-playing">
+    <div class="now-playing" id="song-title">
       <%= yield(:now_playing) %> 
     </div>
     <div class="now-playing" id="countdown">

@@ -109,14 +109,44 @@ $( document ).ready(function() {
     }
   }
 
-  sortPage();
+  sortPage()
+  if ($("#countdown").text()) {
+    remainingTime()
+  }
+
 
   function remainingTime() {
     var counter = $("#countdown").text()
-    var mins = Math.floor(counter/60)
-    var secs = counter - (60*mins)
-    $("#countdown").text(mins + " : " + secs)
+    thisTimer = setInterval(function () {
+      var mins = Math.floor(counter/60)
+      var secs = counter - (60*mins)
+      $("#countdown").text(mins + " : " + secs)
+      counter--
+      if (counter < 10) {
+        console.log("checking")
+        updateNowPlaying()
+      }
+    }, 1000);
   }
+
+  function updateNowPlaying () {
+    $.ajax({
+      url: "/playing",
+      type: "GET",
+      dataType: "json",
+      success: function(data) {
+        $("#song-title").html(data["artist"] + " : " + data["title"])
+        alert(parseInt(data["length"]))
+        $("#countdown").html(parseInt(data["length"]))
+      },
+      error: function(data) {
+        alert('Sorry - did not get anything');
+      }
+    })
+    sortPage()
+    remainingTime()
+  }
+
 
 });
 

@@ -9,7 +9,8 @@ Rails.application.routes.draw do
   root 'track#new'
   post '/vote' => 'catalogue#vote'
   get '/makelist' => 'catalogue#makelist.html'
-  get '/playing' => 'catalogue#now_playing'
+  
+  get '/playing' => 'catalogue#get_now_playing'
 
   get '/menu' => 'catalogue#menu'
   get '/import' => 'catalogue#import_library'
