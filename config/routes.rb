@@ -14,4 +14,10 @@ Rails.application.routes.draw do
   get '/menu' => 'catalogue#menu'
   get '/import' => 'catalogue#import_library'
   get '/play' => 'catalogue#play_the_set'
+
+  get '/api/v1/playlist' => 'api#all'
+  get '/api/v1/playlist/:playlist_id/songs' => 'api#songs'
+
+  post '/api/v1/playlist/songs/:song_id' => 'api#vote'
+
 end
