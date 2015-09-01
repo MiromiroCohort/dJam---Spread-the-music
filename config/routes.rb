@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   post '/track/add' => 'track#add'
   # root 'track#new'
   post '/vote' => 'catalogue#vote'
-  get '/makelist' => 'catalogue#makelist.html'
+  get '/makelist' => 'catalogue#makelist'
   
   get '/playing' => 'catalogue#get_now_playing'
 

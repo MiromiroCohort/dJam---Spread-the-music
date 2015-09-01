@@ -156,12 +156,39 @@ $( document ).ready(function() {
   }
 
   $("#guest").on('click', function() {
-    console.log("guest")
+    $(".choice").removeClass("active")  
+    $(this).addClass("active")
+    $(".reveal").hide()
+    $("#guest-text").show()
+    $(".reveal").removeClass("host")
+    $(".reveal").addClass("guest")
   });
 
   $("#host").on('click', function() {
-    console.log("host")
+    $(".choice").removeClass("active")    
+    $(this).addClass("active")
+    $(".reveal").hide()
+    $("#host-text").show()
+    $(".reveal").removeClass("guest")
+    $(".reveal").addClass("host")
+
   });
+
+  $(".playlist").on('click', function() {
+    var doc_html = ""
+    var ajCall = $.ajax("/makelist")
+      .done(function() {
+        alert("success")
+      })
+      .always(function(data){
+        doc_html = data
+        console.log(doc_html)
+        $(".content").html("")
+        $(".content").html(doc_html)
+      });
+  });
+
+
 
 });
 

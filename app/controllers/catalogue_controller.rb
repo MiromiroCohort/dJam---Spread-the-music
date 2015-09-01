@@ -68,8 +68,8 @@ attr_reader :party_over
     end
   end
 
-  def search_playlist(search_string)
-    # TODO Ajax call to search db
+  def search_for_string(search_string)
+    # search for songs in the database
   end
 
   def get_now_playing
