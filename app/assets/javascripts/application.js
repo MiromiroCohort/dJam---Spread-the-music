@@ -7,7 +7,6 @@ $( document ).ready(function() {
   $( "#search-song-form" ).on('submit', function( event ) {
     event.preventDefault();
     var query = $("#query").val();
-
     $.ajax({
         url: "/track/scrape?query=" + query,
         type: "GET",
@@ -32,15 +31,14 @@ $( document ).ready(function() {
       var title = $("#"+video_id+" .song-title").html();
       var artist = 'YouTube';
       var song_data = {title: title, artist: artist, video_id: video_id}
-      console.log(song_data);
-    $.ajax({
+      $.ajax({
         url: "/track/add?query=",
         data: song_data,
         type: "POST",
         success: function(data) {
         },
         error: function(data) {
-           console.log('Adding song was not successful!');
+          alert('Sorry - it was not possible to add this song. Please try again');
         }
       });
       return false;
@@ -71,7 +69,6 @@ $( document ).ready(function() {
     outRow.animate({opacity: '0.5'}, "slow")
     sortRow(outRow, score)
     outRow.animate({opacity: '1'}, "slow");
-
     $.ajax({
       url: "/vote?song_ref=" + this.id,
       type: "POST",
@@ -109,44 +106,34 @@ $( document ).ready(function() {
     }
   }
 
-  sortPage()
-  if ($("#countdown").text()) {
-    remainingTime()
-  }
 
-
-  function remainingTime() {
-    var counter = $("#countdown").text()
-    thisTimer = setInterval(function () {
-      var mins = Math.floor(counter/60)
-      var secs = counter - (60*mins)
-      $("#countdown").text(mins + " : " + secs)
-      counter--
-      if (counter < 10) {
-        console.log("checking")
-        updateNowPlaying()
+  function runTimer() {
+    var thisTimer = setInterval(function () {
+      var mins = Math.floor(parseInt($("#length-field").html())/60)
+      var secs = String(parseInt($("#length-field").html()) - (60*mins))
+      if (secs.length == 1){
+        secs = "0" + secs
       }
+      $("#countdown").html(mins + ":" +secs)
+      $.ajax({
+        url: "/playing",
+        type: "GET",
+        dataType: "json",
+        success: function(data) {
+          $("#song-title").html(data["artist"] + " : " + data["title"])
+          $('#length-field').html(data["length"])
+        },
+        error: function(data) {
+          alert('Sorry - did not get anything');
+        }
+      })
     }, 1000);
   }
 
-  function updateNowPlaying () {
-    $.ajax({
-      url: "/playing",
-      type: "GET",
-      dataType: "json",
-      success: function(data) {
-        $("#song-title").html(data["artist"] + " : " + data["title"])
-        alert(parseInt(data["length"]))
-        $("#countdown").html(parseInt(data["length"]))
-      },
-      error: function(data) {
-        alert('Sorry - did not get anything');
-      }
-    })
-    sortPage()
-    remainingTime()
-  }
 
+
+
+runTimer()
 
 });
 

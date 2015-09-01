@@ -10,6 +10,7 @@ this_track = Track.first%>
   </header>
 
   <div class="playing row">
+    <span id="length-field"></span>
     <p>Now Playing: </p> 
     <div class="now-playing" id="song-title">
       <%= yield(:now_playing) %> 
