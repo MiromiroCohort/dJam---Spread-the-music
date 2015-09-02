@@ -103,7 +103,7 @@ attr_reader :party_over
           end
         out_html += out_string + "</div>"
         out_html += "<div class='vote-cell count'>" + play_item.vote_count.to_s + "</div>"
-        out_html += "<div class='vote-cell vote-btn' id='" + play_item.id + "'>&nbsp;</div>"
+        out_html += "<div class='vote-cell btn vote-btn' id='" + play_item.id + "'>&nbsp;</div>"
         out_html += "</div>"
       end
     else
