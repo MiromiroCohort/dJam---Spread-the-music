@@ -191,13 +191,5 @@ $( document ).ready(function() {
 
   });
 
-  $(".playlist").on('click', "/makelist"());
-
-
-  $(".djam").on('click', function() {
-    $(document).load("/index.html")
-  });
-
-
 });
 

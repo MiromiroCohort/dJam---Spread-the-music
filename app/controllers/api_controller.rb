@@ -2,6 +2,7 @@ class ApiController < ApplicationController
   def all
     playlist_array = []
     Track.each { |item| playlist_array << item }
+    playlist_array = playlist_array.sort { |item, reverse|  reverse[:vote_count] <=> item[:vote_count]}
     render json: {playlists: playlist_array}
   end
 
