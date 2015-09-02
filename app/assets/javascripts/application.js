@@ -52,6 +52,10 @@
       console.log('Ready to spam: ' + response.email);
       document.getElementById('status').innerHTML =
         'Thanks for logging in, ' + response.name + '!';
+      document.getElementById('playlists-button').innerHTML =
+      "<form action='/playlists'>\
+        <input type='submit' value='Playlists'>\
+      </form>";
       $.ajax({
         method: 'post',
         url: '/session',
@@ -86,10 +90,11 @@ $( document ).ready(function() {
   function addSong(){
     $( ".add-song-button" ).on('click', function( event ) {
       event.preventDefault();
+      var playlist_id = $('.playlist-id').attr("data");
       var video_id = $(this).data("id");
       var title = $("#"+video_id+" .song-title").html();
       var artist = 'YouTube';
-      var song_data = {title: title, artist: artist, video_id: video_id}
+      var song_data = {title: title, artist: artist, video_id: video_id, playlist_id: playlist_id}
       $.ajax({
         url: "/track/add?query=",
         data: song_data,

@@ -1,2 +1,5 @@
 <h1><%= @playlist.name %></h1>
+<form action='/search/<%= @playlist.id %>'>
+  <input type='submit' value='Add Songs From Youtube'>
+</form>
 <%= raw Playlist.display_single(@playlist) %>

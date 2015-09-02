@@ -1,12 +1,13 @@
 Rails.application.routes.draw do
-  get '/track/new' => 'track#new'
+  # get '/track/new' => 'track#new'
   get '/track/scrape' => 'track#scrape'
   post '/session' => 'session#new'
-   root 'site#index'
+  root 'site#index'
   resources :users
   resources :hosts
+  get '/search' => 'track#find_playlist'
   post '/track/add' => 'track#add'
-  # root 'track#new'
+  get '/search/:id' => 'track#new'
   get '/playlists' => 'playlists#index'
   post '/playlists' => 'playlists#create'
   post '/vote' => 'catalogue#vote'
