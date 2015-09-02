@@ -87,6 +87,19 @@ $( document ).ready(function() {
       return false;
     });
 
+  $( "#playlist-search" ).on('submit', function( event ) {
+    event.preventDefault();
+    var query = $("#search-id").val();
+    console.log(query)
+    $.ajax({
+        url: "/playlists/" + query + "/show",
+        type: "GET",
+        // error: function(data) {
+        //    alert('Cannot find that playlist, try again');
+        // }
+      });
+    });
+
   function addSong(){
     $( ".add-song-button" ).on('click', function( event ) {
       event.preventDefault();
@@ -254,6 +267,8 @@ $( document ).ready(function() {
     $(".reveal").addClass("host")
 
   });
+
+
 
   $(".playlist").on('click', function() {
     var doc_html = ""

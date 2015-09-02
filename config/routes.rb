@@ -5,7 +5,6 @@ Rails.application.routes.draw do
   root 'site#index'
   resources :users
   resources :hosts
-  get '/search' => 'track#find_playlist'
   post '/track/add' => 'track#add'
   get '/search/:id' => 'track#new'
   get '/playlists' => 'playlists#index'

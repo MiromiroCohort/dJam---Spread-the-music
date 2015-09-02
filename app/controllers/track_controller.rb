@@ -8,10 +8,6 @@ class TrackController < ApplicationController
   def index
   end
 
-  def find_playlist
-
-  end
-
   def new
     @playlist = Playlist.find_by(id: params[:id])
   end
