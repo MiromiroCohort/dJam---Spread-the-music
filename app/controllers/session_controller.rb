@@ -1,20 +1,19 @@
 class SessionController < ApplicationController
 
   def new
-    p params
-    p params[:email]
     @host = Host.find_by(email: params[:email])
-    p "Host found: #{@host.name}"
+    p "first"
     if @host
-      p @host.id
-      session[:host_id] = @host.id
-      redirect '/playlists'
+      p @host.fbid
+      p "here"
+      session[:host_id] = @host.fbid
+      redirect_to '/playlists'
     else
-      @host = Host.create(email: params[:email], name: params[:name])
+      @host = Host.create(email: params[:email], name: params[:name], fbid: params[:id])
       p "Host created: #{@host.name}"
-      p @host.id
-      session[:host_id] = @host.id
-      redirect '/playlists'
+      p @host.fbid
+      session[:host_id] = @host.fbid
+      redirect_to '/playlists'
     end
     "Host not found: #{@host}"
     @login_error = true
