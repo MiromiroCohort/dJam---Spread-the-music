@@ -90,14 +90,18 @@ $( document ).ready(function() {
   $( "#playlist-search" ).on('submit', function( event ) {
     event.preventDefault();
     var query = $("#search-id").val();
-    console.log(query)
-    $.ajax({
-        url: "/playlists/" + query + "/show",
-        type: "GET",
-        // error: function(data) {
-        //    alert('Cannot find that playlist, try again');
-        // }
-      });
+    var url = 'localhost:3000/playlists/' + query + '/show';
+    console.log(url)
+    window.location = url
+    // $(location).attr('href', url)
+
+    // $.ajax({
+    //     url: "/playlists/" + query + "/show",
+    //     type: "GET",
+    //     error: function(data) {
+    //        alert('Cannot find that playlist, try again');
+    //     }
+    //   });
     });
 
   function addSong(){
