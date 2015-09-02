@@ -10,7 +10,9 @@ class Playlist
       playlists.each do |playlist|
         out_html += "<div class='row'>"
         out_html += "<div class='prime playlists-item'>" + playlist.name
-        out_html += "<div class='select-btn' " + playlist.name + "'>&nbsp;</div>"
+        out_html += "<form action='/playlists/" + playlist.id + "/show'>"
+        out_html += "<input class='select-btn' type='submit' value='Select'>"
+        out_html += "</form>"
         out_html += "</div>"
         out_html += "</div>"
       end
