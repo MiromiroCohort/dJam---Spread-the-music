@@ -18,6 +18,6 @@ Rails.application.routes.draw do
   get '/api/v1/playlist' => 'api#all'
   get '/api/v1/playlist/:playlist_id/songs' => 'api#songs'
 
-  post '/api/v1/playlist/songs/:song_id' => 'api#vote'
+  post '/api/v1/playlist/song/vote' => 'api#vote'
 
 end
