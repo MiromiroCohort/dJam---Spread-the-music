@@ -25,6 +25,23 @@ attr_reader :party_over
     end
   end
 
+  def import_track
+    music_dir = '/media/mpd_music'
+    Dir.foreach(music_dir) do |item|
+      next if item == '.' or item == '..'
+      this_track = Mp3Info.open("#{music_dir}/#{item}")
+      if this_track.tag.artist
+        thisTrack = Track.create playlist_id:0,
+        playlist_position: 0,
+        artist: this_track.tag.artist,
+        title: this_track.tag.title,
+        length:this_track.length,
+        filename: item,
+        vote_count: 1
+      end
+    end
+  end
+
   def self.transfer_to_client_dir(file_path_and_name)
     Net::SCP.upload!("127.0.0.1", "djam", file_path_and_name,  "/media/mpd_music", :ssh => { :password => "C#ristmas25" })
     new_track = Mp3Info.open(file_path_and_name)
@@ -52,13 +69,14 @@ attr_reader :party_over
     playing_now.title = this_song_hash[:song_title]
     playing_now.length = this_song_hash[:song_length]
     playing_now.save
+    generate_html_list
     while not @party_over do
       first= false
       this_song_hash[:song_length].times do
         playing_now.length -=1
         playing_now.save
         sleep 1
-        if playing_now.length == 180 || playing_now.length == 120
+        if playing_now.length == 260 || playing_now.length == 160 || playing_now.length == 120
           this_song_hash = (song_ctl.play_top(first))
           playing_now.artist = this_song_hash[:artist]
           playing_now.title = this_song_hash[:song_title]
@@ -85,6 +103,7 @@ attr_reader :party_over
     this_track = Track.find(params[:song_ref])
     this_track.vote_count +=1
     this_track.save
+    render :nothing => true
   end
 
   def generate_html_list
