@@ -16,7 +16,10 @@
     else
       provide(:playlist, "" )
     end %>
-    <div class="djam"><h1><%= yield(:playlist) %></h1></div>
+    <div class="djam">
+      <h1><%= yield(:playlist) %></h1>
+      <div id='status'></div>
+    </div>
     <div id="wrapper">
       <% if flash.notice %>
         <section class="flash-notice">

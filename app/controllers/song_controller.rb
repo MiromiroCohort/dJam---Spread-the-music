@@ -3,19 +3,52 @@ require 'mongo'
 
 class SongController < ApplicationController
 
-  def open_ssh_connection
+  def self.open_ssh_connection
     session = Net::SSH.start('127.0.0.1', 'djam', :password => "C#ristmas25")
   end
 
 
-  def stop
+  def self.begin_set
+    first=true
+    offset = 3
+    this_song_hash = play_top(first)
+    if not Playing.first
+      playing_now = Playing.create
+    else
+      playing_now = Playing.first
+    end
+    playing_now.artist = this_song_hash[:artist]
+    playing_now.title = this_song_hash[:song_title]
+    playing_now.length = this_song_hash[:song_length]
+    playing_now.save
+    while not @party_over do
+      first= false
+      this_song_hash[:song_length].times do
+        playing_now.length -=1
+        p playing_now.length
+        playing_now.save
+        sleep 1
+        if playing_now.length <= 0 
+          this_song_hash = play_top(first)
+          playing_now.artist = this_song_hash[:artist]
+          playing_now.title = this_song_hash[:song_title]
+          playing_now.length = this_song_hash[:song_length]
+          playing_now.save
+        end
+      end
+    end
+
+
+  end
+
+  def self.stop
     session = open_ssh_connection
       session.exec "mpc stop"
     session.close
   end
 
   
-  def play_top(first)
+  def self.play_top(first)
     highest = -1
     artx = ""
     song = ""
@@ -48,7 +81,6 @@ class SongController < ApplicationController
       this_track = Track.find(song_id)
       this_track.vote_count = 0
       this_track.save
-      @now_playing = "#{artx} : #{song}"
       return out_hash
     end
   end

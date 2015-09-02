@@ -1,7 +1,5 @@
-<%thisCC = CatalogueController.new
-this_html = thisCC.generate_html_list 
-this_track = Track.first%>
 <% if Playing.first
+    provide(:vote_list, "#{CatalogueController.make_list}")
     provide(:now_playing, "#{Playing.first.artist} : #{Playing.first.title}" )
     provide(:countdown, "#{Playing.first.length}")
   else
@@ -21,5 +19,5 @@ this_track = Track.first%>
       <%= yield(:countdown) %>
     </div>
   </div>
-  <%= raw this_html %>
 </article>
+<%= raw "#{CatalogueController.make_list}" %>

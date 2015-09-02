@@ -183,28 +183,31 @@ $( document ).ready(function() {
   function runTimer() {
     var thisTitle = ""
     var thisTimer = setInterval(function () {
-      var mins = Math.floor(parseInt($("#length-field").html())/60)
-      var secs = String(parseInt($("#length-field").html()) - (60*mins))
+      var mins = Math.floor(parseInt($("body").find("#length-field").html())/60)
+      var secs = String(parseInt($("body").find("#length-field").html()) - (60*mins))
       if (secs.length == 1){
         secs = "0" + secs
       }
+      console.log(secs)
       if (thisTitle != ($("#song-title").html().trim())){
         thisTitle = ($("#song-title").html().trim())
         zeroVoteCount(thisTitle)
       }
-      $("#countdown").html(mins + ":" +secs)
-      $.ajax({
-        url: "/playing",
-        type: "GET",
-        dataType: "json",
-        success: function(data) {
-          $("#song-title").html(data["artist"] + " : " + data["title"])
-          $('#length-field').html(data["length"])
-        },
-        error: function(data) {
-          $(".wrapper").append("<h2>Something has gone wrong.  Please alert your host")
-        }
-      })
+      $("body").find("#countdown").html(mins + ":" +secs)
+      if ((parseInt(secs) % 3 == 0) {
+        $.ajax({
+          url: "/playing",
+          type: "GET",
+          dataType: "json",
+          success: function(data) {
+            $("#song-title").html(data["artist"] + " : " + data["title"])
+            $('#length-field').html(data["length"])
+          },
+          error: function(data) {
+            $(".wrapper").append("<h2>Something has gone wrong.  Please alert your host")
+          }
+        })
+      }
     }, 1000);
   }
 

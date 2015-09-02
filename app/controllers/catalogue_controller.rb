@@ -56,35 +56,8 @@ attr_reader :party_over
   end
 
   def play_the_set
-    song_ctl = SongController.new
-    first=true
-    offset = 3
-    this_song_hash = (song_ctl.play_top(first))
-    if not Playing.first
-      playing_now = Playing.create
-    else
-      playing_now = Playing.first
-    end
-    playing_now.artist = this_song_hash[:artist]
-    playing_now.title = this_song_hash[:song_title]
-    playing_now.length = this_song_hash[:song_length]
-    playing_now.save
-    generate_html_list
-    while not @party_over do
-      first= false
-      this_song_hash[:song_length].times do
-        playing_now.length -=1
-        playing_now.save
-        sleep 1
-        if playing_now.length == 260 || playing_now.length == 160 || playing_now.length == 120
-          this_song_hash = (song_ctl.play_top(first))
-          playing_now.artist = this_song_hash[:artist]
-          playing_now.title = this_song_hash[:song_title]
-          playing_now.length = this_song_hash[:song_length]
-          playing_now.save
-        end
-      end
-    end
+    SongController.begin_set
+    redirect_to makelist
   end
 
   def search_for_string(search_string)
@@ -106,7 +79,7 @@ attr_reader :party_over
     render :nothing => true
   end
 
-  def generate_html_list
+  def self.make_list
     if Track.first
       out_html = "<div class='container'>"
       Track.each do |play_item|

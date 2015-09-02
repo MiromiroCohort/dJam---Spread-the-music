@@ -24,8 +24,10 @@
   font-family: 'PT Sans', sans-serif;
 }
 
-.nav {
 
+#status {
+  display:none;
+  font-size: 0em;
 }
 
 img {
