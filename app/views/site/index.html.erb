@@ -11,28 +11,12 @@
   </div>
 </div>
 <div class="reveal" id="host-text">
+  <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+  </fb:login-button>
+
+  <div id="status">
+  </div>
   <section>
-    <p>To create and administer a playlist, you will need to login.</p>
-    <p>If you do not have an account with DJam, you can create one using the Register function</p>
-    <form method="post" action="/session">
-      <legend>Host Login</legend><br />
-      <input type="text" name="email" value="Email">
-      <input type="password" name="password" value="Password">
-      <br /> <br />
-      <button type="submit" class="opts register">Login</button>
-    </form>
-
-    
-    <form method="post" action="/hosts">
-      <legend>Host Register</legend><br />
-      <input type="text" name="host[email]" value="Email">
-      <input type="password" name="host[password]" value="Password">
-      <br /><br />
-      <button type="submit" class="opts register">Register</button>
-    </form>
-      
-    <br><br>
-
     <p>Enter a DJam Playlist Identifier to add to a playlist, or to vote for songs in an existing list</p>
     <div class="row">
       <textarea placeholder="Enter a Playlist ID" cols="20" rows="2"></textarea>

@@ -2,6 +2,65 @@
 //= require jquery_ujs
 //= require_tree .
 
+
+
+ function statusChangeCallback(response) {
+    console.log('statusChangeCallback');
+    console.log(response);
+    if (response.status === 'connected') {
+      sendHostData();
+    } else if (response.status === 'not_authorized') {
+      $('#status').innerHTML = 'Please log ' +
+        'into this app.';
+    } else {
+      $('#status').innerHTML = 'Please log ' +
+        'into Facebook.';
+    }
+  }
+
+  function checkLoginState() {
+    FB.getLoginStatus(function(response) {
+      statusChangeCallback(response);
+    });
+  }
+
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '1706339879587760',
+      cookie     : true,
+      xfbml      : true,
+      version    : 'v2.2'
+    });
+    FB.getLoginStatus(function(response) {
+      statusChangeCallback(response);
+    });
+  };
+
+
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+
+
+  function sendHostData() {
+    FB.api('/me?fields=id,name,email', function(response) {
+      console.log('Successful login for: ' + response.name);
+      console.log('Ready to spam: ' + response.email);
+      document.getElementById('status').innerHTML =
+        'Thanks for logging in, ' + response.name + '!';
+      $.ajax({
+        method: 'post',
+        url: '/session',
+        data: response
+      })
+    });
+  }
+
+
 $( document ).ready(function() {
 
   $( "#search-song-form" ).on('submit', function( event ) {
@@ -204,7 +263,6 @@ $( document ).ready(function() {
         $(".content").html(doc_html)
       });
   });
-
 
 
 });

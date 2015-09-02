@@ -1,0 +1,20 @@
+    <p>To create and administer a playlist, you will need to login.</p>
+    <p>If you do not have an account with DJam, you can create one using the Register function</p>
+    <form method="post" action="/session">
+      <legend>Host Login</legend><br />
+      <input type="text" name="email" value="Email">
+      <input type="password" name="password" value="Password">
+      <br /> <br />
+      <button type="submit" class="opts register">Login</button>
+    </form>
+
+
+    <form method="post" action="/hosts">
+      <legend>Host Register</legend><br />
+      <input type="text" name="host[email]" value="Email">
+      <input type="password" name="host[password]" value="Password">
+      <br /><br />
+      <button type="submit" class="opts register">Register</button>
+    </form>
+
+    <br><br>
