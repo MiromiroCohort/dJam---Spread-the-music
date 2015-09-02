@@ -194,12 +194,15 @@ $( document ).ready(function() {
         zeroVoteCount(thisTitle)
       }
       $("body").find("#countdown").html(mins + ":" +secs)
-      if ((parseInt(secs) % 3 == 0) {
+      if (parseInt(secs) % 3 == 0) {
+        sortPage()
+        alert("got here")
         $.ajax({
           url: "/playing",
           type: "GET",
           dataType: "json",
           success: function(data) {
+            console.log(data)
             $("#song-title").html(data["artist"] + " : " + data["title"])
             $('#length-field').html(data["length"])
           },
