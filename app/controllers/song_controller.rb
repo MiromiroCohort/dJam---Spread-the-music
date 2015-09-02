@@ -2,8 +2,6 @@ require 'net/ssh'
 require 'mongo'
 
 class SongController < ApplicationController
-  attr_reader :now_playing
-
 
   def open_ssh_connection
     session = Net::SSH.start('127.0.0.1', 'djam', :password => "C#ristmas25")
@@ -39,14 +37,13 @@ class SongController < ApplicationController
       artx = artx.split("'")[0]
       song = song.split("'")[0]
       if first
-        exec_string = "mpc clear; mpc crossfade 20; mpc consume on; mpc single off; mpc search artist '#{artx}' title '#{song}'| mpc add ; mpc play ; "
+        exec_string = "mpc update; mpc clear; mpc crossfade 0; mpc consume on; mpc single off; mpc search artist '#{artx}' title '#{song}'| mpc add ; mpc play ; "
       else
-        exec_string = "mpc search artist '#{artx}' title '#{song}' | mpc add"
+        exec_string = "mpc search artist '#{artx}' title '#{song}' | mpc add ; mpc next ; mpc play"
       end
     session = open_ssh_connection
         session.exec "mpc crop"
         session.exec exec_string
-        session.exec "mpc idle"
       session.close
       this_track = Track.find(song_id)
       this_track.vote_count = 0

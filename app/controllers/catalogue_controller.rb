@@ -1,12 +1,11 @@
 require 'mp3info'
+require 'json'
 
 class CatalogueController < ApplicationController
 
-attr_reader :playing_now
+attr_reader :party_over
 
 @party_over = false
-@playing_now
-@duration
 
   def import_library
     music_dir = '/media/mpd_music'
@@ -38,37 +37,47 @@ attr_reader :playing_now
     File.delete(file_path_and_name)
   end
 
-
-
-
   def play_the_set
-    count = 1000
     song_ctl = SongController.new
     first=true
-    offset = 10
-    while count >0 do
-      this_song_hash = (song_ctl.play_top(first))
-      if not Playing.first
-        playing_now = Playing.create
-      end
+    offset = 3
+    this_song_hash = (song_ctl.play_top(first))
+    if not Playing.first
+      playing_now = Playing.create
+    else
       playing_now = Playing.first
-      playing_now.artist = this_song_hash[:artist]
-      playing_now.title = this_song_hash[:song_title]
-      playing_now.length = this_song_hash[:song_length]
-      playing_now.save
+    end
+    playing_now.artist = this_song_hash[:artist]
+    playing_now.title = this_song_hash[:song_title]
+    playing_now.length = this_song_hash[:song_length]
+    playing_now.save
+    while not @party_over do
       first= false
-      # TODO - update front_end with revised playlist when next track taken
-      for i in 0..this_song_hash[:song_length] do
+      this_song_hash[:song_length].times do
+        playing_now.length -=1
+        playing_now.save
         sleep 1
-        mins = this_song_hash[:song_length]/60
-        secs = (this_song_hash[:song_length] - i) - (mins*60)
-        p "Track controller countdown: " + mins.to_s + " mins "  + secs.to_s + " seconds"
+        if playing_now.length == 180 || playing_now.length == 120
+          this_song_hash = (song_ctl.play_top(first))
+          playing_now.artist = this_song_hash[:artist]
+          playing_now.title = this_song_hash[:song_title]
+          playing_now.length = this_song_hash[:song_length]
+          playing_now.save
+        end
       end
     end
   end
 
-  def search_playlist(search_string)
-    # TODO Ajax call to search db
+  def search_for_string(search_string)
+    # search for songs in the database
+  end
+
+  def get_now_playing
+    now_playing = Playing.first
+    return_hash = {:artist => now_playing.artist,
+                   :title => now_playing.title,
+                   :length => now_playing.length}
+    render json: return_hash
   end
 
   def vote
@@ -81,18 +90,20 @@ attr_reader :playing_now
     if Track.first
       out_html = "<div class='container'>"
       Track.each do |play_item|
-        out_html += "<div class='row'><div class='vote-cell prime'>" + play_item.artist + " : "
-        out_string = ""
-        play_item.title.gsub(/\w+/) do |word|
-          if word.upcase == word
-            out_string << word.capitalize + " "
-          else
-            out_string << word + " "
+        out_html += "<div class='row'>"
+        out_html += "<div class='vote-cell prime'>" + play_item.artist + " : "
+          out_string = ""
+          play_item.title.gsub(/\w+/) do |word|
+            if word.upcase == word
+              out_string << word.capitalize + " "
+            else
+              out_string << word + " "
+            end
           end
-        end
         out_html += out_string + "</div>"
         out_html += "<div class='vote-cell count'>" + play_item.vote_count.to_s + "</div>"
-        out_html += "<div class='vote-cell vote-btn' id='" + play_item.id + "'> </div></div>"
+        out_html += "<div class='vote-cell vote-btn' id='" + play_item.id + "'>vote</div>"
+        out_html += "</div>"
       end
     else
       out_html = "<div class='container'><h2>Sorry - there are no items in this playlist</h2></div>"

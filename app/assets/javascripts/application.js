@@ -7,7 +7,6 @@ $( document ).ready(function() {
   $( "#search-song-form" ).on('submit', function( event ) {
     event.preventDefault();
     var query = $("#query").val();
-
     $.ajax({
         url: "/track/scrape?query=" + query,
         type: "GET",
@@ -32,15 +31,14 @@ $( document ).ready(function() {
       var title = $("#"+video_id+" .song-title").html();
       var artist = 'YouTube';
       var song_data = {title: title, artist: artist, video_id: video_id}
-      console.log(song_data);
-    $.ajax({
+      $.ajax({
         url: "/track/add?query=",
         data: song_data,
         type: "POST",
         success: function(data) {
         },
         error: function(data) {
-           console.log('Adding song was not successful!');
+          alert('Sorry - it was not possible to add this song. Please try again');
         }
       });
       return false;
@@ -49,7 +47,6 @@ $( document ).ready(function() {
 
 
   function displaySongs(songs){
-    console.log(songs)
     var items = [];
     $.each(songs, function( song ) {
       items.push( "<li id=" + song + ">" +
@@ -71,7 +68,6 @@ $( document ).ready(function() {
     outRow.animate({opacity: '0.5'}, "slow")
     sortRow(outRow, score)
     outRow.animate({opacity: '1'}, "slow");
-
     $.ajax({
       url: "/vote?song_ref=" + this.id,
       type: "POST",
@@ -108,8 +104,6 @@ $( document ).ready(function() {
     var i = 0
     do {
       if (parseInt($(allRows[i]).find(".count").html()) < thisRowScore) {
-        console.log($(thisRow))
-        console.log($(allRows[i]).find(".count").html())
         $(thisRow).insertBefore($(allRows[i]))
         i = allRows.length +1
       } else {
@@ -127,15 +121,92 @@ $( document ).ready(function() {
     }
   }
 
-  sortPage();
-});
-
-
-  function remainingTime() {
-    var counter = $("#countdown").text()
-    var mins = Math.floor(counter/60)
-    var secs = counter - (60*mins)
-    $("#countdown").text(mins + " : " + secs)
+  function runTimer() {
+    var thisTitle = ""
+    var thisTimer = setInterval(function () {
+      var mins = Math.floor(parseInt($("#length-field").html())/60)
+      var secs = String(parseInt($("#length-field").html()) - (60*mins))
+      if (secs.length == 1){
+        secs = "0" + secs
+      }
+      if (thisTitle != ($("#song-title").html().trim())){
+        thisTitle = ($("#song-title").html().trim())
+        zeroVoteCount(thisTitle)
+      }
+      $("#countdown").html(mins + ":" +secs)
+      $.ajax({
+        url: "/playing",
+        type: "GET",
+        dataType: "json",
+        success: function(data) {
+          $("#song-title").html(data["artist"] + " : " + data["title"])
+          $('#length-field').html(data["length"])
+        },
+        error: function(data) {
+          $(".wrapper").append("<h2>Something has gone wrong.  Please alert your host")
+        }
+      })
+    }, 1000);
   }
+
+  function zeroVoteCount(nowPlayingSong) {
+    var playListRows = $(".container").find(".row")
+
+    for (var i = 0; i<playListRows.length; i++) {
+      if ($(playListRows[i]).find(".prime").html().trim() == nowPlayingSong) {
+        $(playListRows[i]).find(".count").html(0)
+        console.log($(playListRows[i]).find(".count").html(0) + " " + nowPlayingSong)
+        sortPage()
+      }
+    }
+  }
+
+  try {
+    if ($("#song-title").html().trim() != "Nothing is playing yet") {
+      sortPage()
+      runTimer()
+    }
+  } catch(e) {
+    if ($(".djam").find("h1").html() == "") {
+      $(".djam").hide()
+    }
+  }
+
+  $("#guest").on('click', function() {
+    $(".choice").removeClass("active")
+    $(this).addClass("active")
+    $(".reveal").hide()
+    $("#guest-text").show()
+    $(".reveal").removeClass("host")
+    $(".reveal").addClass("guest")
+  });
+
+  $("#host").on('click', function() {
+    $(".choice").removeClass("active")
+    $(this).addClass("active")
+    $(".reveal").hide()
+    $("#host-text").show()
+    $(".reveal").removeClass("guest")
+    $(".reveal").addClass("host")
+
+  });
+
+  $(".playlist").on('click', function() {
+    var doc_html = ""
+    var ajCall = $.ajax("/makelist")
+      .done(function() {
+        alert("success")
+      })
+      .always(function(data){
+        doc_html = data
+        console.log(doc_html)
+        $(".content").html("")
+        $(".content").html(doc_html)
+      });
+  });
+
+
+
+});
 
 

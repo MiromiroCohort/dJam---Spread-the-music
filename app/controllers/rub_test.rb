@@ -1,1 +1,0 @@
-cmd = "scp '/home/del/github/dJam---Spread-the-music/Ghost In This House - Alison Krauss-5nP0gMVpp1c.mp3' 'djam@192.168.1.34:/music_temp'"

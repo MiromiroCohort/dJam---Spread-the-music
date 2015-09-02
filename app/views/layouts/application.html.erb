@@ -10,13 +10,21 @@
     <link href='https://fonts.googleapis.com/css?family=Open+Sans|PT+Sans+Narrow' rel='stylesheet' type='text/css'>
   </head>
   <body>
+    <% if Selected.first
+      provide(:playlist, "#{Selected.first.playlist}" )
+    else
+      provide(:playlist, "" )
+    end %>
+    <div class="djam"><h1><%= yield(:playlist) %></h1></div>
     <div id="wrapper">
       <% if flash.notice %>
         <section class="flash-notice">
           <%= flash.notice %>
         </section>
       <% end %>
-      <%= yield %>
+      <div class="content">
+        <%= yield %>
+      </div>
     </div>
   </body>
 </html>
