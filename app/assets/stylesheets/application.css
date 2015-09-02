@@ -52,7 +52,7 @@ body {
   color: #DDD;
   font-family: 'Open Sans', sans-serif;
   /*font-size: 1em;*/
-  font-size: 2.2vw;
+  font-size: 2.5vw;
 }
 
 .select-form{
@@ -63,8 +63,8 @@ body {
 }
 
 .row {
-  background: rgba(0,0,0,0.5);
-  margin: 1em;
+  background: rgba(0,0,0,0.1);
+  margin: 1em 0;
   text-align:left;
   max-height:3.5em;
   min-height:3.5em;
@@ -80,35 +80,64 @@ body {
   border-bottom-right-radius: 0;
 }
 
-.choice {
-  width: 40%;
+
+input[type=submit] {
+  display:inline-block;
+  border: 1px solid #000;
+  color: #fff;
+  background: #3b5998;
+  font-size:1em;
+  padding: 1em 0.5em;
+  border-radius: 0.5em;
+  float: right;
+}
+
+textarea, input[type=text], input[type=password] {
+  max-width: 180px;
+  float:left;
+  border-radius: 0.5em;
+  display:inline;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1em;
+  text-align:left;
+  padding: 0.5em;
+  margin-left:0.5em;
+  resize: none;
+}
+
+input[type=text] {
+  float:left;
+}
+
+input[type=password] {
+  float:left;
+}
+
+.btn {
+  display:inline-block;
   font-size: 1.2em;
   cursor: pointer;
   line-height: 100%;
   border-style: ridge;
   border-color: rgba(200,200,255, 0.7);;
   text-align: center;
-  margin:2.5%;
+}
+.choice {
+  width: 40%;
 }
 
 .opts {
-  cursor: pointer;
-  margin-left: 2em;
-  background-color: rgba(100,100,125, 0.2);
-  line-height: 100%;
-  border: 0.25em;
-  border-style: ridge;
-  border-color: rgba(200,200,255, 0.7);
-  text-align: center;
+  width: 15%;
+}
+
+.playlist {
+  margin-left: 1em;
 }
 
 .register {
   float:right;
-  border-radius: 2em;
-  padding: 1em;
-  color:white;
   font-size: 1em;
-  display:block;
+  display:inline-block;
   margin-top:1em;
 }
 
@@ -116,18 +145,6 @@ body {
   background-color: rgba(60,99,60, 0.2)
 }
 
-textarea, input{
-  max-width: 200px;
-  float:left;
-  border-radius: 0.5em;
-  display:inline-block;
-  font-family: 'Open Sans', sans-serif;
-  font-size: 1em;
-  text-align:left;
-  padding: 0.5em;
-  margin-left:1em;
-  resize: none;
-}
 
 .reveal {
   display: none;
@@ -154,13 +171,13 @@ textarea, input{
 
 .now-playing {
   display:inline-block;
-  width:60%;
+  width:70%;
   color: rgba(220,220,255, 0.5);
   font-size: 1.25em;
   text-align: left;
   vertical-align: top;
   background-color: #000;
-  padding: .5em;
+  padding: .1em .1em 0 .1em;
 }
 
 #countdown {
@@ -168,6 +185,7 @@ textarea, input{
   width: 25%;
   float:right;
   text-align:right;
+  padding: 0.1em 0.1em 0 0.1em ;
 }
 
 #length-field {
@@ -208,10 +226,8 @@ h2, .list-page-h1 {
 form {
   margin-top:2em;
   margin-bottom:2em;
-  text-align: center;
-  color: #FFF;
   font-size: .7rem;
-  padding: 0 2%;
+  padding: 0;
 }
 
 
@@ -228,24 +244,22 @@ Voting Page
 .prime {
   display: inline-block;
   border-radius: 0.6em 0 0 0.6em;
+  width:60%;
 }
 
 .count {
   margin: 0 auto;
   width: 1em;
+  border-radius:1em;
+  display:inline;
 }
 
 .vote-btn {
-  cursor: pointer;
+  float:right;
   background: url('upvote.jpg') no-repeat center;
   background-size: 50%;
-  background-color: rgba(100,100,125, 0.2);
-  border: 0.25em;
-  border-style: ridge;
-  border-color: rgba(200,200,255, 0.5);
   height: 0.8em;
   line-height: 100%;
-  margin: 0 auto;
   padding: 1em;
   text-align: center;
   width: 0.8em;
@@ -300,18 +314,12 @@ Responsive
     font-size: .8rem;
   }
 
-  .row {
-    margin: 2em 1em;
-    vertical-align:top;
-  }
 
-  .vote-cell {
-    margin: 0.2em;
-  }
 
   .prime {
     padding: 0;
-    width: 100%;
+    width: 80%;
+
   }
 
   .count, .vote-btn {
@@ -331,11 +339,12 @@ Responsive
   }
 
   form {
+    margin:1em;
     font-size: 0.9rem;
+    padding: 1em;
   }
 
   .vote-cell {
-    float: left;
     padding: 1em;
     text-align: center;
   }
@@ -387,9 +396,6 @@ Responsive
     min-width: 1.5em;
   }
 
-  .vote-btn {
-    padding-bottom: 0;
-  }
 }
 
 
@@ -399,9 +405,7 @@ Responsive
     width: 65%;
   }
 
-  .vote-btn {
-    padding-bottom: 0;
-  }
+
 }
 
 .playlists-item{

@@ -16,5 +16,6 @@ class ApiController < ApplicationController
     this_track = Track.find(params[:song_ref])
     this_track.vote_count +=1
     this_track.save
+    head :no_content
   end
 end

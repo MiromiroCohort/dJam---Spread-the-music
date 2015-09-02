@@ -1,6 +1,6 @@
 class Track
   include Mongoid::Document
-  field :playlist_position, type: Integer
+  field :playlist_id, type: Integer
   field :vote_count, type: Integer
   field :artist, type: String
   field :title, type: String
