@@ -41,7 +41,7 @@ class SongController < ApplicationController
       else
         exec_string = "mpc search artist '#{artx}' title '#{song}' | mpc add ; mpc next ; mpc play"
       end
-    session = open_ssh_connection
+      session = open_ssh_connection
         session.exec "mpc crop"
         session.exec exec_string
       session.close

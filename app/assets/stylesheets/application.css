@@ -57,8 +57,8 @@ body {
 }
 
 .row {
-  background: rgba(0,0,0,0.5);
-  margin: 1em;
+  background: rgba(0,0,0,0.1);
+  margin: 1em 0;
   text-align:left;
   max-height:3.5em;
   min-height:3.5em;
@@ -222,14 +222,18 @@ Voting Page
 .prime {
   display: inline-block;
   border-radius: 0.6em 0 0 0.6em;
+  width:60%;
 }
 
 .count {
   margin: 0 auto;
   width: 1em;
+  border-radius:1em;
+  display:inline;
 }
 
 .vote-btn {
+  float:right;
   cursor: pointer;
   background: url('upvote.jpg') no-repeat center;
   background-size: 50%;
@@ -285,10 +289,6 @@ Responsive
     font-size: .8rem;
   }
 
-  .row {
-    margin: 2em 1em;
-    vertical-align:top;
-  }
 
   .vote-cell {
     margin: 0.2em;
@@ -297,6 +297,7 @@ Responsive
   .prime {
     padding: 0;
     width: 100%;
+
   }
 
   .count, .vote-btn {
@@ -372,9 +373,6 @@ Responsive
     min-width: 1.5em;
   }
 
-  .vote-btn {
-    padding-bottom: 0;
-  }
 }
 
 
@@ -384,7 +382,5 @@ Responsive
     width: 65%;
   }
 
-  .vote-btn {
-    padding-bottom: 0;
-  }
+
 }
