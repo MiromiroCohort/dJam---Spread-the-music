@@ -177,17 +177,17 @@ $( document ).ready(function() {
   $(".playlist").on('click', function() {
     var doc_html = ""
     var ajCall = $.ajax("/makelist")
-      .done(function() {
-        alert("success")
-      })
-      .always(function(data){
-        doc_html = data
-        console.log(doc_html)
+      .done(function(data) {
         $(".content").html("")
-        $(".content").html(doc_html)
+        $(".content").append(data)
       });
+      $(".djam").show()
   });
 
+
+  $(".djam").on('click', function() {
+    $(document).load("/")
+  });
 
 
 });

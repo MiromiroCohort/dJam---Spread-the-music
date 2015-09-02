@@ -3,6 +3,7 @@ require 'json'
 
 class CatalogueController < ApplicationController
 
+
 attr_reader :party_over
 
 @party_over = false
