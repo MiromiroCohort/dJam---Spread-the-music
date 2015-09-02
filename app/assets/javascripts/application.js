@@ -77,8 +77,26 @@ $( document ).ready(function() {
       error: function(data) {
         alert('Sorry - your vote was not added');
       }
-    }); 
+    });
   });
+
+
+  function shiftRow(thisRow, thisRowScore) {
+    var allRows = $(".container").find(".row")
+    var i = 0
+    do {
+      if (parseInt($(allRows[i]).find(".count").html()) <= thisRowScore) {
+        thisRow.animate({opacity: '0.5'}, "slow");
+        thisRow.animate({opacity: '1'}, "slow");
+        thisRow.insertBefore(allRows[i])
+        i = allRows.length +1
+      } else {
+        i++
+      }
+    }
+    while (i < allRows.length)
+  }
+
 
 
   function sortRow(thisRow, thisRowScore) {
@@ -102,7 +120,6 @@ $( document ).ready(function() {
       sortRow(rowList[currentRow], rowScore)
     }
   }
-
 
   function runTimer() {
     var thisTitle = ""
