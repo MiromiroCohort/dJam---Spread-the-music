@@ -6,4 +6,5 @@ class Track
   field :title, type: String
   field :length, type: Integer
   field :filename, type: String
+  belongs_to :playlist
 end

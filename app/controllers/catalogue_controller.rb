@@ -75,8 +75,8 @@ attr_reader :party_over
 
   def get_now_playing
     now_playing = Playing.first
-    return_hash = {:artist => now_playing.artist, 
-                   :title => now_playing.title, 
+    return_hash = {:artist => now_playing.artist,
+                   :title => now_playing.title,
                    :length => now_playing.length}
     render json: return_hash
   end
@@ -92,12 +92,12 @@ attr_reader :party_over
       out_html = "<div class='container'>"
       Track.each do |play_item|
         out_html += "<div class='row'>"
-        out_html += "<div class='vote-cell prime'>" + play_item.artist + " : " 
+        out_html += "<div class='vote-cell prime'>" + play_item.artist + " : "
           out_string = ""
           play_item.title.gsub(/\w+/) do |word|
             if word.upcase == word
               out_string << word.capitalize + " "
-            else 
+            else
               out_string << word + " "
             end
           end

@@ -11,6 +11,7 @@
   </div>
 </div>
 <div class="reveal" id="host-text">
+
   <section>
     <div class="row">
       <p>To create and administer a playlist, you will need to login using your Facebook credentials.</p>
@@ -25,6 +26,13 @@
     
     <br><br>
 
+  <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+  </fb:login-button>
+
+
+  <div id="status">
+  </div>
+  <section>
     <p>Enter a DJam Playlist Identifier to add to a playlist, or to vote for songs in an existing list</p>
     <div class="row">
       <textarea placeholder="Enter a Playlist ID" cols="20" rows="2"></textarea>

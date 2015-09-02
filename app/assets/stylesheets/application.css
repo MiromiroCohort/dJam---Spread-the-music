@@ -13,14 +13,13 @@
  *= require_tree .
  *= require_self
  */
-
 .djam {
   width: 100%;
   text-align: right;
   font-size: 3em;
   line-height: 2.6em;
   max-height: 75px;
-  background: url('djam_sml.jpg') no-repeat left;  
+  background: url('djam_sml.jpg') no-repeat left;
   background-color: #0e111e;
   font-family: 'PT Sans', sans-serif;
 }
@@ -54,6 +53,13 @@ body {
   font-family: 'Open Sans', sans-serif;
   /*font-size: 1em;*/
   font-size: 2.5vw;
+}
+
+.select-form{
+  display: inline-block;
+  margin: 0px;
+  padding: 0px;
+
 }
 
 .row {
@@ -259,6 +265,15 @@ Voting Page
   width: 0.8em;
 }
 
+.select-btn{
+  width: 100px;
+  height: 1em;
+  background: url('select.png') no-repeat center;
+  background-size: 100%;
+  display: inline-block;
+  float: right;
+}
+
 
 /***************************************************
 Add song page
@@ -391,4 +406,8 @@ Responsive
   }
 
 
+}
+
+.playlists-item{
+  display: inline-block;
 }
