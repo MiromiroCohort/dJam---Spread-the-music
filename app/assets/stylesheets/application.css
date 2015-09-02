@@ -244,6 +244,15 @@ Voting Page
   width: 0.8em;
 }
 
+.select-btn{
+  width: 100px;
+  height: 30px;
+  background: url('select.png') no-repeat center;
+  background-size: 100%;
+  display: inline-block;
+  float: right;
+}
+
 
 /***************************************************
 Add song page
@@ -386,4 +395,8 @@ Responsive
   .vote-btn {
     padding-bottom: 0;
   }
+}
+
+.playlists-item{
+  display: inline-block;
 }

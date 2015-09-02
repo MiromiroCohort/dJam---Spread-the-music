@@ -7,11 +7,11 @@ Rails.application.routes.draw do
   resources :hosts
   post '/track/add' => 'track#add'
   # root 'track#new'
+  get '/playlists' => 'playlists#index'
+  post '/playlists' => 'playlists#create'
   post '/vote' => 'catalogue#vote'
-  get '/makelist' => 'catalogue#makelist.html'
-  
+  get '/makelist' => 'catalogue#makelist'
   get '/playing' => 'catalogue#get_now_playing'
-
   get '/menu' => 'catalogue#menu'
   get '/import' => 'catalogue#import_library'
   get '/play' => 'catalogue#play_the_set'
