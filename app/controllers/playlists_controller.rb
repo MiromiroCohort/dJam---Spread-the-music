@@ -12,7 +12,8 @@ class PlaylistsController < ApplicationController
   end
 
   def show
-    p params
+    @playlist = Playlist.find_by(id: params[:id])
+    p @playlist.name
   end
 
 end
