@@ -55,6 +55,13 @@ body {
   font-size: 2.2vw;
 }
 
+.select-form{
+  display: inline-block;
+  margin: 0px;
+  padding: 0px;
+
+}
+
 .row {
   background: rgba(0,0,0,0.5);
   margin: 1em;
@@ -246,7 +253,7 @@ Voting Page
 
 .select-btn{
   width: 100px;
-  height: 30px;
+  height: 1em;
   background: url('select.png') no-repeat center;
   background-size: 100%;
   display: inline-block;

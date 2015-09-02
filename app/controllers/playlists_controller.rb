@@ -11,4 +11,8 @@ class PlaylistsController < ApplicationController
     redirect_to '/playlists'
   end
 
+  def show
+    p params
+  end
+
 end
