@@ -109,8 +109,7 @@ body {
   padding-top: 1em;
   padding-bottom: 0;
   border: 0.25em;
-  border-style: ridge;
-  border-color: rgba(200,200,255, 0.2);
+  border-color: rgba(200,200,255, 0.7);
   text-align: center;
 }
 
@@ -122,8 +121,7 @@ body {
   padding-top: 1em;
   padding-bottom: 0;
   border: 0.25em;
-  border-style: ridge;
-  border-color: rgba(200,200,255, 0.2);
+  border-color: rgba(200,200,255, 0.7);
   text-align: center;
 }
 
@@ -271,7 +269,7 @@ Voting Page
   background-color: rgba(100,100,125, 0.2);
   border: 0.25em;
   border-style: ridge;
-  border-color: rgba(200,200,255, 0.2);
+  border-color: rgba(200,200,255, 0.5);
   height: 0.8em;
   line-height: 100%;
   margin: 0 auto;
