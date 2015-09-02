@@ -1,11 +1,12 @@
 class ApiController < ApplicationController
   def all
-    playlist = Playlist.all
-    render json: {playlists: playlist}
+    playlist_array = []
+    Track.each { |item| playlist_array << item }
+    render json: {playlists: playlist_array}
   end
 
   def songs
-    playlist = Playlist.find_by id: params[:id]
+    playlist = Playing.find_by id: params[:id]
     songs = playlist.songs
     render json: {playlists: songs}
   end
@@ -15,6 +16,4 @@ class ApiController < ApplicationController
     this_track.vote_count +=1
     this_track.save
   end
-
-
 end
