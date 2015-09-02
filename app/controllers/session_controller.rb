@@ -7,7 +7,7 @@ class SessionController < ApplicationController
       p @host.fbid
       p "here"
       session[:host_id] = @host.fbid
-      redirect_to '/playlists'
+      redirect_to '/makelist'
     else
       @host = Host.create(email: params[:email], name: params[:name], fbid: params[:id])
       p "Host created: #{@host.name}"
@@ -21,6 +21,6 @@ class SessionController < ApplicationController
 
   def delete
     session[:host_id] = nil
-    redirect '/'
+    redirec_to '/'
   end
 end
