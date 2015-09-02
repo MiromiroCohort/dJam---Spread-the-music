@@ -174,19 +174,11 @@ $( document ).ready(function() {
 
   });
 
-  $(".playlist").on('click', function() {
-    var doc_html = ""
-    var ajCall = $.ajax("/makelist")
-      .done(function(data) {
-        $(".content").html("")
-        $(".content").append(data)
-      });
-      $(".djam").show()
-  });
+  $(".playlist").on('click', "/makelist"());
 
 
   $(".djam").on('click', function() {
-    $(document).load("/")
+    $(document).load("/index.html")
   });
 
 
