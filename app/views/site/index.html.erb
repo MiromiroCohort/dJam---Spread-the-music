@@ -1,27 +1,28 @@
 <img src="assets/djam.jpg">
 <div class="row">
-  <div class="vote-cell choice" id="guest">Event Guest</div>
-  <div class="vote-cell choice" id="host">Event Host</div>
-</div>
+  <div class="vote-cell choice" id="guest">Guest</div>
+  <div class="vote-cell choice" id="host">Host</div>
+</div><br>
 <div class="reveal" id="guest-text">
   <p>Enter a DJam Playlist Identifier to add to a playlist, or to vote for songs in an existing list</p>
   <div class="row">
     <textarea placeholder="Enter a Playlist ID" cols="20" rows="2"></textarea>
-    <div class="vote-cell opts playlist">Submit</div>
+    <a href="/makelist"><div class="vote-cell opts playlist" id="guest">Submit</div></a>
   </div>
 </div>
 <div class="reveal" id="host-text">
   <section>
-    <p>To create and administer a playlist, you will need to login.</p>
-    <p>If you do not have an account with DJam, you can create one using the Register function</p>
-    <form method="post" action="/session">
-      <legend>Host Login</legend><br />
-      <input type="text" name="email" value="Email">
-      <input type="password" name="password" value="Password">
-      <br /> <br />
-      <button type="submit" class="opts register">Login</button>
-    </form>
-
+    <div class="row">
+      <p>To create and administer a playlist, you will need to login.</p>
+      <p>If you do not have an account with DJam, you can create one using the Register function</p>
+      <form method="post" action="/session">
+        <legend>Host Login</legend><br />
+        <input type="text" name="email" value="Email">
+        <input type="password" name="password" value="Password">
+        <br /> <br />
+        <button type="submit" class="opts register">Login</button>
+      </form>
+    </div>
     
     <form method="post" action="/hosts">
       <legend>Host Register</legend><br />
@@ -36,7 +37,7 @@
     <p>Enter a DJam Playlist Identifier to add to a playlist, or to vote for songs in an existing list</p>
     <div class="row">
       <textarea placeholder="Enter a Playlist ID" cols="20" rows="2"></textarea>
-      <div class="vote-cell opts playlist">Submit</div>
+      <a href="/makelist"><div class="vote-cell opts playlist" id="host">Submit</div></a>
     </div>
   </section>
 </div>
